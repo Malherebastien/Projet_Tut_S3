@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <formulaire>
-	<label id="1" x="150" y="100" largeur="25" type="JTextField">jtextfield1</label>
-	<label id="2" x="300" y="100" largeur="25" type="JTextField">jtextfield2</label>
+	<label id="1" x="150" y="100" largeur="150" type="JTextField">Nom</label>
+	<label id="2" x="300" y="100" largeur="200" type="JTextField">Prenom</label>
 	<label id="3" x="150" y="50" largeur="200" type="JLabel" value="coucou">jlabel1</label>
 </formulaire>

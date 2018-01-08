@@ -66,7 +66,10 @@ public class genererFormulaire
 		String declarationVariable = "";
 		String instanciationVariable = "";
 
-		instanciationVariable+="\t\tlisteObjet = new ArrayList<Object>();\n\n";
+		int compteurJtf = 0,compteurLabel = 0,compteurCheckbox = 0;
+
+		instanciationVariable+="\t\tlisteObjet = new ArrayList<Object>();\n";
+		instanciationVariable+="\t\tGridBagConstraints gbc = new GridBagConstraints();\n\n";
 
 		for (Element e : listeObjet )
 		{
@@ -75,21 +78,27 @@ public class genererFormulaire
 			int posY = Integer.parseInt(e.getAttributeValue("y"));
 			int largeur = Integer.parseInt(e.getAttributeValue("largeur"));
 			String type = e.getAttributeValue("type");
-			String nomVariable = e.getText();
 
 			switch (type)
 			{
 				case "JTextField" :
 				{
+					String nomVariable = "jtextfield"+ ++compteurJtf;
 					declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
 					instanciationVariable+="\t\t"+nomVariable+" = new "+type+"();\n";
-					instanciationVariable+="\t\t"+nomVariable+".setSize("+posX+","+posY+");\n";
-					instanciationVariable+="\t\tadd("+nomVariable+");\n";
+					instanciationVariable+="\t\t"+nomVariable+".setPreferredSize(new Dimension("+largeur+",25));\n";
+					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n";
+					instanciationVariable+="\t\tgbc.gridx = 1;\n";
+					instanciationVariable+="\t\tgbc.gridy = "+id+";\n";
+					instanciationVariable+="\t\tadd (new JLabel(\""+e.getText()+"\"),gbc);\n";
+					instanciationVariable+="\t\tgbc.gridx = 2;\n";
+					instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
 				}
 				break;
 				case "JLabel" :
 				{
+					String nomVariable = "jlabel"+ ++compteurLabel;
 					String valeur = e.getAttributeValue("value");
 					declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
 					if(!valeur.equals(null))
@@ -99,7 +108,10 @@ public class genererFormulaire
 					else
 						instanciationVariable+="\t\t"+nomVariable+" = new "+type+"();\n";
 					instanciationVariable+="\t\t"+nomVariable+".setSize("+posX+","+posY+");\n";
-					instanciationVariable+="\t\tadd("+nomVariable+");\n";
+					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n";
+					instanciationVariable+="\t\tgbc.gridx = 1;\n";
+					instanciationVariable+="\t\tgbc.gridy = "+id+";\n";
+					instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n";
 				}
 				break;
@@ -121,9 +133,9 @@ public class genererFormulaire
 		System.out.println(generationFormulaire.genererPied());
 
 		String s = "";
-		s += generationFormulaire.genererEntete(textes[0]);
-		s += generationFormulaire.genererCorps(textes[1]);
-		s += generationFormulaire.genererPied();
+		s+= generationFormulaire.genererEntete(textes[0]);
+		s+= generationFormulaire.genererCorps(textes[1]);
+		s+= generationFormulaire.genererPied();
 
 		try {
 			PrintWriter writer = new PrintWriter(new File("Formulaire.java"), "UTF-8");
