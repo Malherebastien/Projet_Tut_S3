@@ -1,0 +1,17 @@
+<!--<!DOCTYPE ecran [
+<!ELEMENT ecran (label, id, x, y, largeur, type)>
+	<!ELEMENT label (#PCDATA)>
+	<!ELEMENT id (#PCDATA)>
+	<!ELEMENT x (#PCDATA)>
+	<!ELEMENT y (#PCDATA)>
+	<!ELEMENT largeur (#PCDATA)>
+	<!ELEMENT type (#PCDATA)>
+
+	<!ATTLIST ecran label CDATA #REQUIRED>
+	<!ATTLIST ecran id CDATA #REQUIRED>
+]> -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<label></label>
+
+
