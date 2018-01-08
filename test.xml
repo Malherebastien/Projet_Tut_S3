@@ -3,4 +3,6 @@
 	<label id="1" x="150" y="100" largeur="150" type="JTextField">Nom</label>
 	<label id="2" x="300" y="100" largeur="200" type="JTextField">Prenom</label>
 	<label id="3" x="150" y="50" largeur="200" type="JLabel" value="coucou">jlabel1</label>
+	<label id="4" x="150" y="50" largeur="200" type="JComboBox" >Nom de la paire : rouge, bleu, noire</label>
+	<!-- <label id="5" x="150" y="50" largeur="200" type="JCheckBox" >Nom de la paire : rouge, bleu, noire</label> -->
 </formulaire>

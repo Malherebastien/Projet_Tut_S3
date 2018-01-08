@@ -8,6 +8,7 @@ public class Formulaire extends JFrame
 	private JTextField jtextfield1;
 	private JTextField jtextfield2;
 	private JLabel jlabel1;
+	private JComboBox jcombobox1;
 	public Formulaire()
 	{
 		setSize(500,500);
@@ -43,6 +44,19 @@ public class Formulaire extends JFrame
 		gbc.gridy = 3;
 		add(jlabel1,gbc);
 		listeObjet.add(jlabel1);
+		jcombobox1 = new JComboBox();
+		jcombobox1.setPreferredSize(new Dimension(200,25));
+		gbc.insets = new Insets(5, 10, 0, 5);
+		gbc.gridx = 1;
+		gbc.gridy = 4;
+		add (new JLabel("Nom de la paire "),gbc);
+		gbc.gridx = 2;
+		jcombobox1.addItem(" rouge");
+		jcombobox1.addItem(" bleu");
+		jcombobox1.addItem(" noire");
+		add(jcombobox1,gbc);
+		listeObjet.add(jcombobox1);
+
 		setVisible(true);
 	}
 	public static void main(String[] args)

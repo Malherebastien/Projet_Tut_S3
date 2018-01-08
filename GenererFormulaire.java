@@ -4,12 +4,12 @@ import java.util.List;
 import java.io.File;
 import java.io.PrintWriter;
 
-public class genererFormulaire
+public class GenererFormulaire
 {
 	private static Document document;
 	private static Element racine;
 
-	public genererFormulaire(String fichier)
+	public GenererFormulaire(String fichier)
 	{
 		SAXBuilder sxb = new SAXBuilder();
 		try
@@ -115,6 +115,31 @@ public class genererFormulaire
 					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n";
 				}
 				break;
+				case "JComboBox" :
+				{
+					String[] labelCheckBox = e.getText().split(":");
+					String[] valCheckBox = labelCheckBox[1].split(",");
+					int tailleVal = valCheckBox.length;
+
+					String nomVariable = "jcombobox"+ ++compteurCheckbox;
+					declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
+					instanciationVariable+="\t\t"+nomVariable+" = new "+type+"();\n";
+					instanciationVariable+="\t\t"+nomVariable+".setPreferredSize(new Dimension("+largeur+",25));\n";
+					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n";
+					instanciationVariable+="\t\tgbc.gridx = 1;\n";
+					instanciationVariable+="\t\tgbc.gridy = "+id+";\n";
+					instanciationVariable+="\t\tadd (new JLabel(\""+labelCheckBox[0]+"\"),gbc);\n";
+					instanciationVariable+="\t\tgbc.gridx = 2;\n";
+					// instanciationVariable+="\t\tfor (int i = 0; i < "+tailleVal+"; i++);\n";
+					// instanciationVariable+="\t\t\t"+nomVariable+".addItem("+valCheckBox[i]+");\n";
+					for (int i = 0; i < tailleVal; i++)
+					{
+						instanciationVariable+="\t\t"+nomVariable+".addItem(\""+valCheckBox[i]+"\");\n";
+					}
+					instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
+					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+				}
+				break;
 
 				default : continue;
 			}
@@ -126,7 +151,7 @@ public class genererFormulaire
 
 	public static void main(String[] args)
 	{
-		genererFormulaire generationFormulaire = new genererFormulaire("test.xml");
+		GenererFormulaire generationFormulaire = new GenererFormulaire("test.xml");
 		String[] textes = generationFormulaire.genererVariables();
 		System.out.println(generationFormulaire.genererEntete(textes[0]));
 		System.out.println(generationFormulaire.genererCorps(textes[1]));
