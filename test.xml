@@ -1,17 +1,6 @@
-<!--<!DOCTYPE ecran [
-<!ELEMENT ecran (label, id, x, y, largeur, type)>
-	<!ELEMENT label (#PCDATA)>
-	<!ELEMENT id (#PCDATA)>
-	<!ELEMENT x (#PCDATA)>
-	<!ELEMENT y (#PCDATA)>
-	<!ELEMENT largeur (#PCDATA)>
-	<!ELEMENT type (#PCDATA)>
-
-	<!ATTLIST ecran label CDATA #REQUIRED>
-	<!ATTLIST ecran id CDATA #REQUIRED>
-]> -->
-
 <?xml version="1.0" encoding="UTF-8"?>
-<label></label>
-
-
+<formulaire>
+	<label id="1" x="150" y="100" largeur="25" type="JTextField">jtextfield1</label>
+	<label id="2" x="300" y="100" largeur="25" type="JTextField">jtextfield2</label>
+	<label id="3" x="150" y="50" largeur="200" type="JLabel" value="coucou">jlabel1</label>
+</formulaire>

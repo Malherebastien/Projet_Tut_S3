@@ -29,6 +29,7 @@ public class testIHM extends JFrame implements ActionListener //oui c'est pas bi
 			}
 			catch (Exception e){}
 		}
+		this.dispose();
 
 	}
 
