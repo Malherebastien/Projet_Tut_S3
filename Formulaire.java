@@ -14,6 +14,10 @@ public class Formulaire extends JFrame
 	private JCheckBox jcheckbox2;
 	private JCheckBox jcheckbox3;
 	private JLabel jlabel2;
+	private JRadioButton jradiobutton1;
+	private JRadioButton jradiobutton2;
+	private JRadioButton jradiobutton3;
+	private JRadioButton jradiobutton4;
 
 	public Formulaire()
 	{
@@ -134,6 +138,43 @@ public class Formulaire extends JFrame
 		add(jlabel2,gbc);
 		listeObjet.add(jlabel2);
 
+		gbc.insets = new Insets(5, 10, 0, 5);
+
+		gbc.gridx = 1;
+		gbc.gridy = 9;
+		JLabel labelId7 = new JLabel("7");
+		add(labelId7,gbc);
+		listeId.add(labelId7);
+
+		gbc.gridx = 2;
+		add (new JLabel("Choix unique"),gbc);
+
+		gbc.gridx = 3;
+		ButtonGroup bg = new ButtonGroup();
+		jradiobutton1 = new JRadioButton("1");
+		bg.add(jradiobutton1);
+		add(jradiobutton1,gbc);
+		listeObjet.add(jradiobutton1);
+
+		gbc.gridy = 10;
+		jradiobutton2 = new JRadioButton("2");
+		bg.add(jradiobutton2);
+		add(jradiobutton2,gbc);
+		listeObjet.add(jradiobutton2);
+
+		gbc.gridy = 11;
+		jradiobutton3 = new JRadioButton("3");
+		bg.add(jradiobutton3);
+		add(jradiobutton3,gbc);
+		listeObjet.add(jradiobutton3);
+
+		gbc.gridy = 12;
+		jradiobutton4 = new JRadioButton("4");
+		bg.add(jradiobutton4);
+		add(jradiobutton4,gbc);
+		listeObjet.add(jradiobutton4);
+
+		gbc.gridy = 13;
 		setVisible(true);
 		pack();
 	}

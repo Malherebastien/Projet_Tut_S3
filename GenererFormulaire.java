@@ -70,7 +70,7 @@ public class GenererFormulaire
 
 		int gridY = 1;
 
-		int compteurJtf = 0,compteurLabel = 0,compteurCheckbox = 0, compteurCombobox = 0;
+		int compteurJtf = 0,compteurLabel = 0,compteurCheckbox = 0, compteurCombobox = 0,compteurRadiobutton = 0;
 
 		instanciationVariable+="\t\tlisteObjet = new ArrayList<Object>();\n";
 		instanciationVariable+="\t\tlisteId = new ArrayList<JLabel>();\n";
@@ -184,7 +184,6 @@ public class GenererFormulaire
 					instanciationVariable+="\t\tgbc.gridx = 3;\n";
 					for (Element elt : elements)
 					{
-						// instanciationVariable+="\t\t"+nomVariable+".addItem(\""+elt.getText()+"\");\n";
 						String nomVariable = "jcheckbox"+ ++compteurCheckbox;
 						declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
 						instanciationVariable+="\t\t"+nomVariable+" = new "+type+"(\""+elt.getText()+"\");\n";
@@ -193,6 +192,38 @@ public class GenererFormulaire
 						gridY++;
 						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 
+					}
+				}
+				break;
+
+				case "JRadioButton" :
+				{
+					List<Element> elements = e.getChildren();
+
+					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n\n";
+
+					instanciationVariable+="\t\tgbc.gridx = 1;\n";
+					instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+					instanciationVariable+="\t\tJLabel labelId"+id+" = new JLabel(\""+id+"\");\n";
+					instanciationVariable+="\t\tadd(labelId"+id+",gbc);\n";
+					instanciationVariable+="\t\tlisteId.add(labelId"+id+");\n\n";
+
+					instanciationVariable+="\t\tgbc.gridx = 2;\n";
+					instanciationVariable+="\t\tadd (new JLabel(\""+e.getAttributeValue("value")+"\"),gbc);\n\n";
+
+					instanciationVariable+="\t\tgbc.gridx = 3;\n";
+
+					instanciationVariable+="\t\tButtonGroup bg = new ButtonGroup();\n";
+					for (Element elt : elements)
+					{
+						String nomVariable = "jradiobutton"+ ++compteurRadiobutton;
+						declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
+						instanciationVariable+="\t\t"+nomVariable+" = new "+type+"(\""+elt.getText()+"\");\n";
+						instanciationVariable+="\t\tbg.add("+nomVariable+");\n";
+						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
+						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+						gridY++;
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 					}
 				}
 				break;
