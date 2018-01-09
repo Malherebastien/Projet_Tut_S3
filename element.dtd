@@ -4,33 +4,38 @@
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
 						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED >
+							  value CDATA #REQUIRED 
+							   type CDATA #REQUIRED >
 	<!ELEMENT JLabel EMPTY>
 		<!ATTLIST JLabel    id ID    #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
 						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED >
+							  value CDATA #REQUIRED 
+							   type CDATA #REQUIRED >
 	<!ELEMENT JComboBox (comboBox+)>
 		<!ATTLIST JComboBox id ID    #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
 						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED >
+							  value CDATA #REQUIRED 
+							   type CDATA #REQUIRED >
 	<!ELEMENT comboBox (#PCDATA)>
 	<!ELEMENT JCheckBox (checkBox+)>
 		<!ATTLIST JCheckBox id ID    #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
 						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED >
+							  value CDATA #REQUIRED 
+							   type CDATA #REQUIRED >
 	<!ELEMENT checkBox (#PCDATA)>
 	<!ELEMENT JRadioButton (radioButton+)>
 		<!ATTLIST JRadioButton id ID #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
 						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED >
+							  value CDATA #REQUIRED 
+							   type CDATA #REQUIRED >
 	<!ELEMENT radioButton (#PCDATA)>
 		
 		

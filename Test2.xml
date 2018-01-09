@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE formulaire SYSTEM "element.dtd">
 <formulaire>
-	<JTextField id="1" x="150" y="100" largeur="150" value="Nom"/>
-	<JTextField id="2" x="300" y="100" largeur="200" value="Prenom"/>
-	<JLabel id="3" x="150" y="50"  largeur="200" value="Partie 1"/>
-	<JComboBox id="4" x="150" y="50" largeur="200" value="Choix couleur">
+	<JTextField id="1" x="150" y="100" largeur="150" value="Nom" type="String"/>
+	<JTextField id="2" x="300" y="100" largeur="200" value="Prenom" type="String"/>
+	<JLabel id="3" x="150" y="50"  largeur="200" value="Partie 1" type="void"/>
+	<JComboBox id="4" x="150" y="50" largeur="200" value="Choix couleur"  type="String">
 		<comboBox>rouge</comboBox>
 		<comboBox>bleu</comboBox>
 		<comboBox>vert</comboBox>
 	</JComboBox>
-	<JCheckBox id="5" x="150" y="50" largeur="200" value="Nom de la paire">
+	<JCheckBox id="5" x="150" y="50" largeur="200" value="Nom de la paire" type="String">
 		<checkBox>rouge</checkBox>
 		<checkBox>bleu</checkBox>
 		<checkBox>vert</checkBox>
 	</JCheckBox>
-	<JLabel id="6" x="150" y="50"  largeur="200" value="Partie 1"/>
-	<JRadioButton id="3" x="150" y="50" largeur="200" value="Choix unique">
+	<JLabel id="6" x="150" y="50"  largeur="200" value="Partie 1" type="void"/>
+	<JRadioButton id="7" x="150" y="50" largeur="200" value="Choix unique" type="int">
 		<radioButton>1</radioButton>
 		<radioButton>2</radioButton>
 		<radioButton>3</radioButton>
