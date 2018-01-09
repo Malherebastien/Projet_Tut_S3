@@ -1,12 +1,36 @@
-<!DOCTYPE ecran
-<!ELEMENT ecran (label, id, x, y, largeur, type, titre?, value?)>
-	<!ELEMENT composant   (comboBox* | checkBox* | radioButton*)>
-	<!ELEMENT id      (#PCDATA)>
-	<!ELEMENT x       (#PCDATA)>
-	<!ELEMENT y       (#PCDATA)>
-	<!ELEMENT largeur (#PCDATA)>
-	<!ELEMENT type    (#PCDATA)>
+<!ELEMENT formulaire (JTextField*, JLabel*, JComboBox*, JCheckBox*, JRadioButton*)>
+	<!ELEMENT JTextField EMPTY>
+		<!ATTLIST JTextField id ID   #REQUIRED
+								   x CDATA #REQUIRED 
+								   y CDATA #REQUIRED
+						   largeur CDATA #REQUIRED
+							  value CDATA #REQUIRED >
+	<!ELEMENT JLabel EMPTY>
+		<!ATTLIST JLabel    id ID    #REQUIRED
+								   x CDATA #REQUIRED 
+								   y CDATA #REQUIRED
+						   largeur CDATA #REQUIRED
+							  value CDATA #REQUIRED >
+	<!ELEMENT JComboBox (comboBox+)>
+		<!ATTLIST JComboBox id ID    #REQUIRED
+								   x CDATA #REQUIRED 
+								   y CDATA #REQUIRED
+						   largeur CDATA #REQUIRED
+							  value CDATA #REQUIRED >
+	<!ELEMENT comboBox (#PCDATA)>
+	<!ELEMENT JCheckBox (checkBox+)>
+		<!ATTLIST JCheckBox id ID    #REQUIRED
+								   x CDATA #REQUIRED 
+								   y CDATA #REQUIRED
+						   largeur CDATA #REQUIRED
+							  value CDATA #REQUIRED >
+	<!ELEMENT checkBox (#PCDATA)>
+	<!ELEMENT JRadioButton (radioButton+)>
+		<!ATTLIST JRadioButton id ID #REQUIRED
+								   x CDATA #REQUIRED 
+								   y CDATA #REQUIRED
+						   largeur CDATA #REQUIRED
+							  value CDATA #REQUIRED >
+	<!ELEMENT radioButton (#PCDATA)>
 		
-	<!ATTLIST ecran label CDATA #REQUIRED>
-	<!ATTLIST ecran id    CDATA #REQUIRED>
->
+		
