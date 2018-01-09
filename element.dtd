@@ -1,46 +1,47 @@
 <!ELEMENT formulaire (JTextField*, JLabel*, JComboBox*, JCheckBox*, JRadioButton*)>
 	<!ELEMENT JTextField EMPTY>
-		<!ATTLIST JTextField id ID   #REQUIRED
+		<!ATTLIST JTextField label CDATA #REQUIRED
+									id ID   #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED 
+						   largeur CDATA #REQUIRED 
 							   type CDATA #REQUIRED >
 	<!ELEMENT JLabel EMPTY>
-		<!ATTLIST JLabel    id ID    #REQUIRED
+		<!ATTLIST JLabel     label CDATA #REQUIRED
+									id ID   #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED 
+						   largeur CDATA #REQUIRED 
 							   type CDATA #REQUIRED >
 	<!ELEMENT JComboBox (comboBox+)>
-		<!ATTLIST JComboBox id ID    #REQUIRED
+		<!ATTLIST JComboBox  label CDATA #REQUIRED
+									id ID    #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED 
+						   largeur CDATA #REQUIRED 
 							   type CDATA #REQUIRED >
 	<!ELEMENT comboBox (#PCDATA)>
 	<!ELEMENT JCheckBox (checkBox+)>
-		<!ATTLIST JCheckBox id ID    #REQUIRED
+		<!ATTLIST JCheckBox  label CDATA #REQUIRED
+									id ID    #REQUIRED
 								   x CDATA #REQUIRED 
 								   y CDATA #REQUIRED
 						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED 
 							   type CDATA #REQUIRED >
 	<!ELEMENT checkBox (#PCDATA)>
 	<!ELEMENT JRadioButton (radioButton+)>
-		<!ATTLIST JRadioButton id ID #REQUIRED
-								   x CDATA #REQUIRED 
-								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED
-							  value CDATA #REQUIRED 
-							   type CDATA #REQUIRED >
+		<!ATTLIST JRadioButton label CDATA #REQUIRED
+										id ID #REQUIRED
+										x CDATA #REQUIRED 
+										y CDATA #REQUIRED
+								largeur CDATA #REQUIRED
+									type CDATA #REQUIRED >
 	<!ELEMENT radioButton (#PCDATA)>
 	<!ELEMENT Tableau EMPTY> 
-		<!ATTLIST Tableau col  CDATA #REQUIRED
-								lig  CDATA #IMPLIED
-								type CDATA #REQUIRED >
+		<!ATTLIST Tableau label CDATA #IMPLIED
+								col   CDATA #REQUIRED
+								lig   CDATA #IMPLIED
+								type  CDATA #REQUIRED >
 	<!ELEMENT JSpinner (#PCDATA)>								
 		
 		
