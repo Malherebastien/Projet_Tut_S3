@@ -1,12 +1,16 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.util.*;
 
-public class Formulaire extends JFrame
+public class Formulaire extends JFrame implements KeyListener
 {
 	ArrayList<Object> listeObjet;
 	ArrayList<JLabel> listeId;
 	ArrayList<JLabel> listeType;
+	private Set<Integer> keyPressed;
+	boolean showId = true, showType = true;
 	private JTextField jtextfield1;
 	private JTextField jtextfield2;
 	private JLabel jlabel1;
@@ -25,6 +29,7 @@ public class Formulaire extends JFrame
 	{
 		setLocation(200,200);
 		setLayout(new GridBagLayout());
+		keyPressed = new HashSet<Integer>();
 		listeObjet = new ArrayList<Object>();
 		listeId = new ArrayList<JLabel>();
 		listeType = new ArrayList<JLabel>();
@@ -51,6 +56,7 @@ public class Formulaire extends JFrame
 		gbc.gridy = 1;
 		JLabel labelType1 = new JLabel("String");
 		add(labelType1,gbc);
+		jtextfield1.addKeyListener(this);
 		listeType.add(labelType1);
 
 		jtextfield2 = new JTextField();
@@ -74,6 +80,7 @@ public class Formulaire extends JFrame
 		gbc.gridy = 2;
 		JLabel labelType2 = new JLabel("String");
 		add(labelType2,gbc);
+		jtextfield2.addKeyListener(this);
 		listeType.add(labelType2);
 
 		jlabel1 = new JLabel("Partie 1");
@@ -112,8 +119,11 @@ public class Formulaire extends JFrame
 
 		gbc.gridx = 3;
 		jcombobox1.addItem("rouge");
+		jcombobox1.addKeyListener(this);
 		jcombobox1.addItem("bleu");
+		jcombobox1.addKeyListener(this);
 		jcombobox1.addItem("vert");
+		jcombobox1.addKeyListener(this);
 		add(jcombobox1,gbc);
 		listeObjet.add(jcombobox1);
 
@@ -143,16 +153,19 @@ public class Formulaire extends JFrame
 		gbc.gridx = 3;
 		jcheckbox1 = new JCheckBox("rouge");
 		add(jcheckbox1,gbc);
+		jcheckbox1.addKeyListener(this);
 		listeObjet.add(jcheckbox1);
 
 		gbc.gridy = 6;
 		jcheckbox2 = new JCheckBox("bleu");
 		add(jcheckbox2,gbc);
+		jcheckbox2.addKeyListener(this);
 		listeObjet.add(jcheckbox2);
 
 		gbc.gridy = 7;
 		jcheckbox3 = new JCheckBox("vert");
 		add(jcheckbox3,gbc);
+		jcheckbox3.addKeyListener(this);
 		listeObjet.add(jcheckbox3);
 
 		gbc.gridy = 8;
@@ -199,28 +212,33 @@ public class Formulaire extends JFrame
 		jradiobutton1 = new JRadioButton("1");
 		bg.add(jradiobutton1);
 		add(jradiobutton1,gbc);
+		jradiobutton1.addKeyListener(this);
 		listeObjet.add(jradiobutton1);
 
 		gbc.gridy = 10;
 		jradiobutton2 = new JRadioButton("2");
 		bg.add(jradiobutton2);
 		add(jradiobutton2,gbc);
+		jradiobutton2.addKeyListener(this);
 		listeObjet.add(jradiobutton2);
 
 		gbc.gridy = 11;
 		jradiobutton3 = new JRadioButton("3");
 		bg.add(jradiobutton3);
 		add(jradiobutton3,gbc);
+		jradiobutton3.addKeyListener(this);
 		listeObjet.add(jradiobutton3);
 
 		gbc.gridy = 12;
 		jradiobutton4 = new JRadioButton("4");
 		bg.add(jradiobutton4);
 		add(jradiobutton4,gbc);
+		jradiobutton4.addKeyListener(this);
 		listeObjet.add(jradiobutton4);
 
 		gbc.gridy = 13;
 		jspinner1 = new JSpinner();
+		jspinner1.addKeyListener(this);
 		jspinner1.setPreferredSize(new Dimension(200,25));
 		gbc.insets = new Insets(5, 10, 0, 5);
 
@@ -235,6 +253,7 @@ public class Formulaire extends JFrame
 
 		gbc.gridx = 3;
 		add(jspinner1,gbc);
+		((JSpinner.DefaultEditor)jspinner1.getEditor()).getTextField().addKeyListener(this);
 		listeObjet.add(jspinner1);
 
 		gbc.gridx = 4;
@@ -243,8 +262,47 @@ public class Formulaire extends JFrame
 		add(labelType8,gbc);
 		listeType.add(labelType8);
 
+		addKeyListener(this);
 		setVisible(true);
+		requestFocus();
 		pack();
+	}
+
+	public void keyPressed(KeyEvent e)
+	{		System.out.println("key pressed");
+		keyPressed.add(e.getKeyCode());
+		if(keyPressed.contains(KeyEvent.VK_CONTROL) && keyPressed.contains(KeyEvent.VK_T))
+		{
+			this.affichageTypes();
+		}
+		if(keyPressed.contains(KeyEvent.VK_CONTROL) && keyPressed.contains(KeyEvent.VK_I))
+		{
+			this.affichageId();
+		}
+	}
+	public void keyReleased(KeyEvent e)	{
+		keyPressed.remove(e.getKeyCode());
+	}
+	public void keyTyped(KeyEvent e){}
+
+	private void affichageId()
+	{
+		if(showId)
+			for(JLabel jl : listeId)jl.setVisible(false);
+		else
+			for(JLabel jl : listeId)jl.setVisible(true);
+		revalidate();
+		showId = !showId;
+	}
+
+	private void affichageTypes()
+	{
+		if(showType)
+			for(JLabel jl : listeType)jl.setVisible(false);
+		else
+			for(JLabel jl : listeType)jl.setVisible(true);
+		revalidate();
+		showType = !showType;
 	}
 
 	public static void main(String[] args)
