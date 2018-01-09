@@ -41,5 +41,6 @@
 		<!ATTLIST Tableau col  CDATA #REQUIRED
 								lig  CDATA #IMPLIED
 								type CDATA #REQUIRED >
+	<!ELEMENT JSpinner (#PCDATA)>								
 		
 		
