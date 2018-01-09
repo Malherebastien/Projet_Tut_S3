@@ -21,4 +21,6 @@
 		<radioButton>3</radioButton>
 		<radioButton>4</radioButton>
 	</JRadioButton>
+	<Tableau col="8" lig="8" type="int"/>
+	<Tableau col="8" type="String"/>
 </formulaire>

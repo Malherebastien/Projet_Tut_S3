@@ -37,5 +37,9 @@
 							  value CDATA #REQUIRED 
 							   type CDATA #REQUIRED >
 	<!ELEMENT radioButton (#PCDATA)>
+	<!ELEMENT Tableau EMPTY> 
+		<!ATTLIST Tableau col  CDATA #REQUIRED
+								lig  CDATA #IMPLIED
+								type CDATA #REQUIRED >
 		
 		
