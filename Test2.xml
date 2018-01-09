@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<formulaire>
+	<JTextField id="1" x="150" y="100" largeur="150" value="Nom"/>
+	<JTextField id="2" x="300" y="100" largeur="200" value="Prenom"/>
+	<JLabel id="3" x="150" y="50"  largeur="200" value="Partie 1"/>
+	<JComboBox id="4" x="150" y="50" largeur="200" value="Choix couleur">
+		<comboBox>rouge</comboBox>
+		<comboBox>bleu</comboBox>
+		<comboBox>vert</comboBox>
+	</JComboBox>
+	<JCheckBox id="5" x="150" y="50" largeur="200" value="Nom de la paire">
+		<checkBox>rouge</checkBox>
+		<checkBox>bleu</checkBox>
+		<checkBox>vert</checkBox>
+	</JCheckBox> 
+	<JRadioButton id="3" x="150" y="50" largeur="200" value="Choix unique">
+		<radioButton>1</radioButton>
+		<radioButton>2</radioButton>
+		<radioButton>3</radioButton>
+		<radioButton>4</radioButton>
+	</JRadioButton>
+</formulaire>
