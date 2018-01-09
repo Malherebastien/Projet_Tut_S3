@@ -32,6 +32,7 @@ public class GenererFormulaire
 		s+="public class Formulaire extends JFrame\n{\n";
 		s+="\tArrayList<Object> listeObjet;\n";
 		s+="\tArrayList<JLabel> listeId;\n";
+		s+="\tArrayList<JLabel> listeType;\n";
 		s+= variables+"\n";
 
 		return s;
@@ -54,7 +55,7 @@ public class GenererFormulaire
 	public String genererPied()
 	{
 		String s = "";
-		s+="\n\tpublic static void main(String[] args)\n\t{\n";
+		s+="\n\n\tpublic static void main(String[] args)\n\t{\n";
 		s+="\t\tnew Formulaire();\n";
 		s+="\t}\n}";
 
@@ -74,6 +75,7 @@ public class GenererFormulaire
 
 		instanciationVariable+="\t\tlisteObjet = new ArrayList<Object>();\n";
 		instanciationVariable+="\t\tlisteId = new ArrayList<JLabel>();\n";
+		instanciationVariable+="\t\tlisteType = new ArrayList<JLabel>();\n";
 		instanciationVariable+="\t\tGridBagConstraints gbc = new GridBagConstraints();\n\n";
 
 		for (Element e : listeObjet )
@@ -96,6 +98,7 @@ public class GenererFormulaire
 					case "JTextField" :
 					{
 						String nomVariable = "jtextfield"+ ++compteurJtf;
+
 						declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
 						instanciationVariable+="\t\t"+nomVariable+" = new "+type+"();\n";
 						instanciationVariable+="\t\t"+nomVariable+".setPreferredSize(new Dimension("+largeur+",25));\n";
@@ -113,6 +116,12 @@ public class GenererFormulaire
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+
+						instanciationVariable+="\t\tgbc.gridx = 4;\n";
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
+						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
+						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
 						gridY++;
 					}
 					break;
@@ -141,6 +150,12 @@ public class GenererFormulaire
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+
+						instanciationVariable+="\t\tgbc.gridx = 4;\n";
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
+						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
+						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
 						gridY++;
 					}
 					break;
@@ -171,6 +186,12 @@ public class GenererFormulaire
 						}
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+
+						instanciationVariable+="\t\tgbc.gridx = 4;\n";
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
+						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
+						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
 						gridY++;
 					}
 					break;
@@ -190,6 +211,12 @@ public class GenererFormulaire
 						instanciationVariable+="\t\tgbc.gridx = 2;\n";
 						instanciationVariable+="\t\tadd (new JLabel(\""+e.getAttributeValue("value")+"\"),gbc);\n\n";
 
+						instanciationVariable+="\t\tgbc.gridx = 4;\n";
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
+						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
+						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
+
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						for (Element elt : elements)
 						{
@@ -200,7 +227,6 @@ public class GenererFormulaire
 							instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
 							gridY++;
 							instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
-
 						}
 					}
 					break;
@@ -219,6 +245,12 @@ public class GenererFormulaire
 
 						instanciationVariable+="\t\tgbc.gridx = 2;\n";
 						instanciationVariable+="\t\tadd (new JLabel(\""+e.getAttributeValue("value")+"\"),gbc);\n\n";
+
+						instanciationVariable+="\t\tgbc.gridx = 4;\n";
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
+						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
+						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
 
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 
@@ -259,13 +291,19 @@ public class GenererFormulaire
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+
+						instanciationVariable+="\t\tgbc.gridx = 4;\n";
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
+						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
+						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
 						gridY++;
 					}
 					break;
 
 					default : continue;
 				}
-			}			
+			}
 		}
 		String[] textes = new String[]{declarationVariable,instanciationVariable};
 		return textes;

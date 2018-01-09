@@ -6,6 +6,7 @@ public class Formulaire extends JFrame
 {
 	ArrayList<Object> listeObjet;
 	ArrayList<JLabel> listeId;
+	ArrayList<JLabel> listeType;
 	private JTextField jtextfield1;
 	private JTextField jtextfield2;
 	private JLabel jlabel1;
@@ -26,6 +27,7 @@ public class Formulaire extends JFrame
 		setLayout(new GridBagLayout());
 		listeObjet = new ArrayList<Object>();
 		listeId = new ArrayList<JLabel>();
+		listeType = new ArrayList<JLabel>();
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		jtextfield1 = new JTextField();
@@ -45,6 +47,12 @@ public class Formulaire extends JFrame
 		add(jtextfield1,gbc);
 		listeObjet.add(jtextfield1);
 
+		gbc.gridx = 4;
+		gbc.gridy = 1;
+		JLabel labelType1 = new JLabel("String");
+		add(labelType1,gbc);
+		listeType.add(labelType1);
+
 		jtextfield2 = new JTextField();
 		jtextfield2.setPreferredSize(new Dimension(200,25));
 		gbc.insets = new Insets(5, 10, 0, 5);
@@ -62,6 +70,12 @@ public class Formulaire extends JFrame
 		add(jtextfield2,gbc);
 		listeObjet.add(jtextfield2);
 
+		gbc.gridx = 4;
+		gbc.gridy = 2;
+		JLabel labelType2 = new JLabel("String");
+		add(labelType2,gbc);
+		listeType.add(labelType2);
+
 		jlabel1 = new JLabel("Partie 1");
 		jlabel1.setSize(150,50);
 		gbc.insets = new Insets(5, 10, 0, 5);
@@ -76,6 +90,12 @@ public class Formulaire extends JFrame
 		gbc.gridx = 3;
 		add(jlabel1,gbc);
 		listeObjet.add(jlabel1);
+
+		gbc.gridx = 4;
+		gbc.gridy = 3;
+		JLabel labelType3 = new JLabel("void");
+		add(labelType3,gbc);
+		listeType.add(labelType3);
 
 		jcombobox1 = new JComboBox();
 		jcombobox1.setPreferredSize(new Dimension(200,25));
@@ -97,6 +117,12 @@ public class Formulaire extends JFrame
 		add(jcombobox1,gbc);
 		listeObjet.add(jcombobox1);
 
+		gbc.gridx = 4;
+		gbc.gridy = 4;
+		JLabel labelType4 = new JLabel("String");
+		add(labelType4,gbc);
+		listeType.add(labelType4);
+
 		gbc.insets = new Insets(5, 10, 0, 5);
 
 		gbc.gridx = 1;
@@ -107,6 +133,12 @@ public class Formulaire extends JFrame
 
 		gbc.gridx = 2;
 		add (new JLabel("Nom de la paire"),gbc);
+
+		gbc.gridx = 4;
+		gbc.gridy = 5;
+		JLabel labelType5 = new JLabel("String");
+		add(labelType5,gbc);
+		listeType.add(labelType5);
 
 		gbc.gridx = 3;
 		jcheckbox1 = new JCheckBox("rouge");
@@ -139,6 +171,12 @@ public class Formulaire extends JFrame
 		add(jlabel2,gbc);
 		listeObjet.add(jlabel2);
 
+		gbc.gridx = 4;
+		gbc.gridy = 8;
+		JLabel labelType6 = new JLabel("void");
+		add(labelType6,gbc);
+		listeType.add(labelType6);
+
 		gbc.insets = new Insets(5, 10, 0, 5);
 
 		gbc.gridx = 1;
@@ -149,6 +187,12 @@ public class Formulaire extends JFrame
 
 		gbc.gridx = 2;
 		add (new JLabel("Choix unique"),gbc);
+
+		gbc.gridx = 4;
+		gbc.gridy = 9;
+		JLabel labelType7 = new JLabel("int");
+		add(labelType7,gbc);
+		listeType.add(labelType7);
 
 		gbc.gridx = 3;
 		ButtonGroup bg = new ButtonGroup();
@@ -193,9 +237,16 @@ public class Formulaire extends JFrame
 		add(jspinner1,gbc);
 		listeObjet.add(jspinner1);
 
+		gbc.gridx = 4;
+		gbc.gridy = 13;
+		JLabel labelType8 = new JLabel("void");
+		add(labelType8,gbc);
+		listeType.add(labelType8);
+
 		setVisible(true);
 		pack();
 	}
+
 	public static void main(String[] args)
 	{
 		new Formulaire();
