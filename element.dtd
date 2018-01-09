@@ -1,12 +1,12 @@
-<!DOCTYPE ecran [
-<!ELEMENT ecran (label, id, x, y, largeur, type)>
-	<!ELEMENT label   (#PCDATA)>
+<!DOCTYPE ecran
+<!ELEMENT ecran (label, id, x, y, largeur, type, titre?, value?)>
+	<!ELEMENT composant   (comboBox* | checkBox* | radioButton*)>
 	<!ELEMENT id      (#PCDATA)>
 	<!ELEMENT x       (#PCDATA)>
 	<!ELEMENT y       (#PCDATA)>
 	<!ELEMENT largeur (#PCDATA)>
 	<!ELEMENT type    (#PCDATA)>
-
+		
 	<!ATTLIST ecran label CDATA #REQUIRED>
 	<!ATTLIST ecran id    CDATA #REQUIRED>
-]>
+>
