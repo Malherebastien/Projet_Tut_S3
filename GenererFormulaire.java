@@ -41,11 +41,12 @@ public class GenererFormulaire
 	{
 		String s = "";
 		s+="\tpublic Formulaire()\n\t{\n";
-		s+="\t\tsetSize(500,500);\n";
+		// s+="\t\tsetSize(500,500);\n";
 		s+="\t\tsetLocation(200,200);\n";
 		s+="\t\tsetLayout(new GridBagLayout());\n";
 		s+=variables;
 		s+="\t\tsetVisible(true);\n";
+		s+="\t\tpack();\n";
 		s+="\t}";
 
 		return s;
@@ -63,11 +64,13 @@ public class GenererFormulaire
 
 	public String[] genererVariables()
 	{
-		List<Element> listeObjet = racine.getChildren("label");
+		List<Element> listeObjet = racine.getChildren();
 		String declarationVariable = "";
 		String instanciationVariable = "";
 
-		int compteurJtf = 0,compteurLabel = 0,compteurCheckbox = 0;
+		int gridY = 1;
+
+		int compteurJtf = 0,compteurLabel = 0,compteurCheckbox = 0, compteurCombobox = 0;
 
 		instanciationVariable+="\t\tlisteObjet = new ArrayList<Object>();\n";
 		instanciationVariable+="\t\tlisteId = new ArrayList<JLabel>();\n";
@@ -79,7 +82,7 @@ public class GenererFormulaire
 			int posX = Integer.parseInt(e.getAttributeValue("x"));
 			int posY = Integer.parseInt(e.getAttributeValue("y"));
 			int largeur = Integer.parseInt(e.getAttributeValue("largeur"));
-			String type = e.getAttributeValue("type");
+			String type = e.getName();
 
 			switch (type)
 			{
@@ -92,17 +95,18 @@ public class GenererFormulaire
 					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 1;\n";
-					instanciationVariable+="\t\tgbc.gridy = "+id+";\n";
+					instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 					instanciationVariable+="\t\tJLabel labelId"+id+" = new JLabel(\""+id+"\");\n";
 					instanciationVariable+="\t\tadd(labelId"+id+",gbc);\n";
 					instanciationVariable+="\t\tlisteId.add(labelId"+id+");\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 2;\n";
-					instanciationVariable+="\t\tadd (new JLabel(\""+e.getText()+"\"),gbc);\n\n";
+					instanciationVariable+="\t\tadd (new JLabel(\""+e.getAttributeValue("value")+"\"),gbc);\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 3;\n";
 					instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+					gridY++;
 				}
 				break;
 				case "JLabel" :
@@ -116,48 +120,80 @@ public class GenererFormulaire
 					}
 					else
 						instanciationVariable+="\t\t"+nomVariable+" = new "+type+"();\n";
+
 					instanciationVariable+="\t\t"+nomVariable+".setSize("+posX+","+posY+");\n";
 					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 1;\n";
-										instanciationVariable+="\t\tgbc.gridy = "+id+";\n";
+					instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 					instanciationVariable+="\t\tJLabel labelId"+id+" = new JLabel(\""+id+"\");\n";
+					instanciationVariable+="\t\tgbc.anchor = GridBagConstraints.WEST;\n";
 					instanciationVariable+="\t\tadd(labelId"+id+",gbc);\n";
 					instanciationVariable+="\t\tlisteId.add(labelId"+id+");\n\n";
 
-					instanciationVariable+="\t\tgbc.gridx = 2;\n";
+					instanciationVariable+="\t\tgbc.gridx = 3;\n";
 					instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+					gridY++;
 				}
 				break;
 				case "JComboBox" :
 				{
-					String[] labelCheckBox = e.getText().split(":");
-					String[] valCheckBox = labelCheckBox[1].split(",");
-					int tailleVal = valCheckBox.length;
+					List<Element> elements = e.getChildren();
 
-					String nomVariable = "jcombobox"+ ++compteurCheckbox;
+					String nomVariable = "jcombobox"+ ++compteurCombobox;
 					declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
 					instanciationVariable+="\t\t"+nomVariable+" = new "+type+"();\n";
 					instanciationVariable+="\t\t"+nomVariable+".setPreferredSize(new Dimension("+largeur+",25));\n";
 					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 1;\n";
-					instanciationVariable+="\t\tgbc.gridy = "+id+";\n";
+					instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 					instanciationVariable+="\t\tJLabel labelId"+id+" = new JLabel(\""+id+"\");\n";
 					instanciationVariable+="\t\tadd(labelId"+id+",gbc);\n";
 					instanciationVariable+="\t\tlisteId.add(labelId"+id+");\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 2;\n";
-					instanciationVariable+="\t\tadd (new JLabel(\""+labelCheckBox[0]+"\"),gbc);\n\n";
+					instanciationVariable+="\t\tadd (new JLabel(\""+e.getAttributeValue("value")+"\"),gbc);\n\n";
 
 					instanciationVariable+="\t\tgbc.gridx = 3;\n";
-					for (int i = 0; i < tailleVal; i++)
+					for (Element elt : elements)
 					{
-						instanciationVariable+="\t\t"+nomVariable+".addItem(\""+valCheckBox[i]+"\");\n";
+						instanciationVariable+="\t\t"+nomVariable+".addItem(\""+elt.getText()+"\");\n";
 					}
 					instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 					instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+					gridY++;
+				}
+				break;
+				case "JCheckBox" :
+				{
+					List<Element> elements = e.getChildren();
+
+					instanciationVariable+="\t\tgbc.insets = new Insets(5, 10, 0, 5);\n\n";
+
+					instanciationVariable+="\t\tgbc.gridx = 1;\n";
+					instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+					instanciationVariable+="\t\tJLabel labelId"+id+" = new JLabel(\""+id+"\");\n";
+					instanciationVariable+="\t\tadd(labelId"+id+",gbc);\n";
+					instanciationVariable+="\t\tlisteId.add(labelId"+id+");\n\n";
+
+					instanciationVariable+="\t\tgbc.gridx = 2;\n";
+					instanciationVariable+="\t\tadd (new JLabel(\""+e.getAttributeValue("value")+"\"),gbc);\n\n";
+
+					instanciationVariable+="\t\tgbc.gridx = 3;\n";
+					for (Element elt : elements)
+					{
+						// instanciationVariable+="\t\t"+nomVariable+".addItem(\""+elt.getText()+"\");\n";
+						String nomVariable = "jcheckbox"+ ++compteurCheckbox;
+						declarationVariable+="\tprivate "+type+" "+nomVariable+";\n";
+						instanciationVariable+="\t\t"+nomVariable+" = new "+type+"(\""+elt.getText()+"\");\n";
+						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
+						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+						gridY++;
+						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
+
+					}
 				}
 				break;
 
@@ -171,7 +207,7 @@ public class GenererFormulaire
 
 	public static void main(String[] args)
 	{
-		GenererFormulaire generationFormulaire = new GenererFormulaire("test.xml");
+		GenererFormulaire generationFormulaire = new GenererFormulaire("Test2.xml");
 		String[] textes = generationFormulaire.genererVariables();
 		System.out.println(generationFormulaire.genererEntete(textes[0]));
 		System.out.println(generationFormulaire.genererCorps(textes[1]));

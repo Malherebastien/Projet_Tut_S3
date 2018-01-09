@@ -12,7 +12,8 @@
 		<checkBox>rouge</checkBox>
 		<checkBox>bleu</checkBox>
 		<checkBox>vert</checkBox>
-	</JCheckBox> 
+	</JCheckBox>
+	<JLabel id="6" x="150" y="50"  largeur="200" value="Partie 1"/>
 	<JRadioButton id="3" x="150" y="50" largeur="200" value="Choix unique">
 		<radioButton>1</radioButton>
 		<radioButton>2</radioButton>
