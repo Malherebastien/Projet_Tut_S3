@@ -18,6 +18,7 @@ public class Formulaire extends JFrame
 	private JRadioButton jradiobutton2;
 	private JRadioButton jradiobutton3;
 	private JRadioButton jradiobutton4;
+	private JSpinner jspinner1;
 
 	public Formulaire()
 	{
@@ -175,6 +176,23 @@ public class Formulaire extends JFrame
 		listeObjet.add(jradiobutton4);
 
 		gbc.gridy = 13;
+		jspinner1 = new JSpinner();
+		jspinner1.setPreferredSize(new Dimension(200,25));
+		gbc.insets = new Insets(5, 10, 0, 5);
+
+		gbc.gridx = 1;
+		gbc.gridy = 13;
+		JLabel labelId8 = new JLabel("8");
+		add(labelId8,gbc);
+		listeId.add(labelId8);
+
+		gbc.gridx = 2;
+		add (new JLabel("Spinneeeeeeeer"),gbc);
+
+		gbc.gridx = 3;
+		add(jspinner1,gbc);
+		listeObjet.add(jspinner1);
+
 		setVisible(true);
 		pack();
 	}
