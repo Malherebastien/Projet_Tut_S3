@@ -1,47 +1,48 @@
 <!ELEMENT formulaire (JTextField*, JLabel*, JComboBox*, JCheckBox*, JRadioButton*)>
 	<!ELEMENT JTextField EMPTY>
-		<!ATTLIST JTextField label CDATA #REQUIRED
-									id ID   #REQUIRED
-								   x CDATA #REQUIRED 
-								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED 
-							   type CDATA #REQUIRED >
+		<!ATTLIST JTextField    label CDATA #REQUIRED
+										   id ID    #REQUIRED
+								   	    x CDATA #REQUIRED 
+								          y CDATA #REQUIRED
+						          largeur CDATA #REQUIRED
+							          type (int | String | Double | boolean | float) "String" >
 	<!ELEMENT JLabel EMPTY>
-		<!ATTLIST JLabel     label CDATA #REQUIRED
-									id ID   #REQUIRED
-								   x CDATA #REQUIRED 
-								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED 
-							   type CDATA #REQUIRED >
+		<!ATTLIST JLabel        label CDATA #REQUIRED
+										   id ID    #REQUIRED
+								   	    x CDATA #REQUIRED 
+								          y CDATA #REQUIRED
+						          largeur CDATA #REQUIRED
+							          type (int | String | Double | boolean | float) "String" >
 	<!ELEMENT JComboBox (comboBox+)>
-		<!ATTLIST JComboBox  label CDATA #REQUIRED
-									id ID    #REQUIRED
-								   x CDATA #REQUIRED 
-								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED 
-							   type CDATA #REQUIRED >
+		<!ATTLIST JComboBox     label CDATA #REQUIRED
+										   id ID    #REQUIRED
+								   	    x CDATA #REQUIRED 
+								          y CDATA #REQUIRED
+						          largeur CDATA #REQUIRED
+							          type (int | String | Double | boolean | float) "String" >
 	<!ELEMENT comboBox (#PCDATA)>
 	<!ELEMENT JCheckBox (checkBox+)>
-		<!ATTLIST JCheckBox  label CDATA #REQUIRED
-									id ID    #REQUIRED
-								   x CDATA #REQUIRED 
-								   y CDATA #REQUIRED
-						   largeur CDATA #REQUIRED
-							   type CDATA #REQUIRED >
+		<!ATTLIST JCheckBox     label CDATA #REQUIRED
+										   id ID    #REQUIRED
+								   	    x CDATA #REQUIRED 
+								          y CDATA #REQUIRED
+						          largeur CDATA #REQUIRED
+							          type (int | String | Double | boolean | float) "String" >
 	<!ELEMENT checkBox (#PCDATA)>
 	<!ELEMENT JRadioButton (radioButton+)>
-		<!ATTLIST JRadioButton label CDATA #REQUIRED
-										id ID #REQUIRED
-										x CDATA #REQUIRED 
-										y CDATA #REQUIRED
-								largeur CDATA #REQUIRED
-									type CDATA #REQUIRED >
+		<!ATTLIST JRadioButton  label CDATA #REQUIRED
+										   id ID    #REQUIRED
+								   	    x CDATA #REQUIRED 
+								          y CDATA #REQUIRED
+						          largeur CDATA #REQUIRED
+							          type (int | String | Double | boolean | float) "String" >
 	<!ELEMENT radioButton (#PCDATA)>
 	<!ELEMENT Tableau EMPTY> 
 		<!ATTLIST Tableau label CDATA #IMPLIED
-								col   CDATA #REQUIRED
-								lig   CDATA #IMPLIED
-								type  CDATA #REQUIRED >
-	<!ELEMENT JSpinner (#PCDATA)>								
+								  col CDATA #REQUIRED
+								  lig CDATA #IMPLIED 
+								 type (int | String | Double | boolean | float) "String">
+	<!ELEMENT JSpinner (#PCDATA)>
+									
 		
 		
