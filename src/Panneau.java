@@ -11,8 +11,6 @@ public class Panneau extends JPanel
 
     public void paintComponent(Graphics g)
     {
-        System.out.println("paintComponent");
-
         //On efface l'ancien rectangle
         g.setColor(getBackground());
         g.fillRect((this.getWidth()/NB_COL)*previousX, (this.getHeight()/NB_LIGNES)*previousY, this.getWidth()/NB_COL, this.getHeight()/NB_LIGNES);

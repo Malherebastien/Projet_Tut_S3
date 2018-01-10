@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
@@ -11,6 +13,7 @@ public class Tableau extends JFrame implements KeyListener
     private final int NB_LIGNES = 6;
     private final int NB_COL = 6;
 
+    private PanelText panelText;
     private Panneau panneau;
     private int x;
     private int y;
@@ -28,12 +31,12 @@ public class Tableau extends JFrame implements KeyListener
         this.setLocationRelativeTo(null);
 
         panneau = new Panneau();
-        FlowLayout flow = new FlowLayout();
-        JTextField text = new JTextField();
-        this.setLayout(flow);
-        add(panneau, FlowLayout.LEFT);
-        add(text, FlowLayout.RIGHT);
-        addKeyListener(this);
+        panelText = new PanelText(this);
+        BorderLayout bl = new BorderLayout();
+        this.setLayout(bl);
+        add(panneau, BorderLayout.CENTER);
+        add(panelText, BorderLayout.SOUTH);
+        this.addKeyListener(this);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.requestFocus();
@@ -69,7 +72,8 @@ public class Tableau extends JFrame implements KeyListener
             if(keyPressed.contains(KeyEvent.VK_RIGHT) && keyPressed.contains(KeyEvent.VK_SHIFT))
                 x = NB_LIGNES;
         }
-        else
+        else if (keyPressed.contains(KeyEvent.VK_UP) || keyPressed.contains(KeyEvent.VK_LEFT) ||
+                 keyPressed.contains(KeyEvent.VK_DOWN) || keyPressed.contains(KeyEvent.VK_RIGHT))
         {
             if (keyPressed.contains(KeyEvent.VK_UP))
                     y--;
@@ -80,13 +84,16 @@ public class Tableau extends JFrame implements KeyListener
             if (keyPressed.contains(KeyEvent.VK_RIGHT))
                     x++;
         }
+        else
+        {
+            panelText.getFocus();
+        }
 
         if(x < 0) x = 0;
         if(y < 0) y = 0;
         if(x > NB_LIGNES-1) x = NB_LIGNES-1;
         if(y > NB_COL-1) y = NB_COL-1;
 
-        System.out.println("x = " + x  + "\ty = " + y);
         panneau.deplacerSelection(x, y);
     }
 
@@ -99,5 +106,10 @@ public class Tableau extends JFrame implements KeyListener
     public static void main (String[] argv)
     {
         new Tableau();
+    }
+
+    public void getFocus()
+    {
+        this.requestFocus();
     }
 }
