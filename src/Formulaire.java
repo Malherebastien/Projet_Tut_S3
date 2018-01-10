@@ -269,8 +269,7 @@ public class Formulaire extends JFrame implements KeyListener
 	}
 
 	public void keyPressed(KeyEvent e)
-	{		System.out.println("key pressed");
-		keyPressed.add(e.getKeyCode());
+	{		keyPressed.add(e.getKeyCode());
 		if(keyPressed.contains(KeyEvent.VK_CONTROL) && keyPressed.contains(KeyEvent.VK_T))
 		{
 			this.affichageTypes();

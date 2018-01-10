@@ -7,19 +7,16 @@ import java.awt.BorderLayout;
 
 public class testIHM extends JFrame implements ActionListener //oui c'est pas bien je sais
 {
-	private JTextField jtfTest;
 	private JButton boutonEnvoi;
 	private boolean valide;
 
 	private testIHM()
 	{
-		this.setSize(200,200);
 		this.setLayout(new BorderLayout());
-		this.jtfTest = new JTextField();
+		this.setContentPane(new Formulaire());
 		this.boutonEnvoi = new JButton("envoyer");
 		this.boutonEnvoi.addActionListener(this);
-		this.add(boutonEnvoi,BorderLayout.CENTER);
-		this.add(jtfTest,BorderLayout.SOUTH);
+		this.add(boutonEnvoi,BorderLayout.SOUTH);
 		this.setVisible(true);
 		while(!valide)
 		{
@@ -36,7 +33,7 @@ public class testIHM extends JFrame implements ActionListener //oui c'est pas bi
 	public static String creerIHM()
 	{
 		testIHM ihm = new testIHM();
-		return ihm.getJtf().getText();
+		return "coucou";
 
 	}
 
@@ -48,10 +45,5 @@ public class testIHM extends JFrame implements ActionListener //oui c'est pas bi
 			this.valide = true;
 			System.out.println(this.valide);
 		}
-	}
-
-	public JTextField getJtf()
-	{
-		return this.jtfTest;
 	}
 }
