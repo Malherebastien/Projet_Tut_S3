@@ -3,7 +3,7 @@
 <formulaire>
 	<JTextField label="Nom"  id="1" x="150" y="100" largeur="150" type="String"/>
 	<JTextField label="Prenom" id="2" x="300" y="100" largeur="200"  type="String"/>
-	<JLabel  label="Partie 1"  id="3" x="150" y="50"  largeur="200" type="void"/>
+	<JLabel  label="Partie 1"  id="3" x="150" y="50"  largeur="200"/>
 	<JComboBox label="Choix couleur"   id="4" x="150" y="50" largeur="200" type="String">
 		<comboBox>rouge</comboBox>
 		<comboBox>bleu</comboBox>
@@ -14,7 +14,7 @@
 		<checkBox>bleu</checkBox>
 		<checkBox>vert</checkBox>
 	</JCheckBox>
-	<JLabel label="Partie 1" id="6" x="150" y="50"  largeur="200"  type="void"/>
+	<JLabel label="Partie 1" id="6" x="150" y="50"  largeur="200"/>
 	<JRadioButton label="Choix unique"  id="7" x="150" y="50" largeur="200" type="int">
 		<radioButton>1</radioButton>
 		<radioButton>2</radioButton>
@@ -24,4 +24,5 @@
 	<JSpinner label="Spinneeeeeeeer"  id="8" x="150" y="50"  largeur="200" type="void"/>
 	<Tableau label="tableau 2 dim"  col="8" lig="8" type="int"/>
 	<Tableau label="tableau 1 dim"  col="8" type="String"/>
+	<Calendrier x="150" y="50" largeur="200"/>
 </formulaire>
