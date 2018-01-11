@@ -11,7 +11,8 @@
 										   id ID    #REQUIRED
 								   	    x CDATA #REQUIRED 
 								          y CDATA #REQUIRED
-						          largeur CDATA #REQUIRED>
+						          largeur CDATA #REQUIRED
+							          type (int | String | Double | boolean | float) "String" >
 	<!ELEMENT JComboBox (comboBox+)>
 		<!ATTLIST JComboBox     label CDATA #REQUIRED
 										   id ID    #REQUIRED
@@ -42,11 +43,6 @@
 								  lig CDATA #IMPLIED 
 								 type (int | String | Double | boolean | float) "String">
 	<!ELEMENT JSpinner (#PCDATA)>
-	
-	<!ELEMENT Calendrier EMPTY>
-		<!ATTLIST Calendrier			 x CDATA #REQUIRED 
-								          y CDATA #REQUIRED
-						          		 largeur CDATA #REQUIRED>
 									
 		
 		

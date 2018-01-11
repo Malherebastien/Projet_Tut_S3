@@ -5,6 +5,8 @@
  */
 import org.jdom.*;
 import org.jdom.input.*;
+
+
 import java.util.List;
 import java.io.File;
 import java.io.PrintWriter;
@@ -18,7 +20,7 @@ public class GenererFormulaire
 
 	/**
 	 * Constructeur de la classe, permettant d'ouvrir le document XML afin de le parcourir par la suite.
-	 * @param le lien du fichier XML à parcourir sous forme de String
+	 * @param fichier lien du fichier XML à parcourir sous forme de String
 	 */
 	public GenererFormulaire(String fichier)
 	{
@@ -37,7 +39,7 @@ public class GenererFormulaire
 	/**
 	 * Méthode permettant de générer la partie haute du formulaire IHM, en prenant en paramètres les variables à déclarer en private
 	 * c'est ici qu'on écrit également les import afin que l'IHM fonctionne correctement
-	 * @param les variables à déclarer récupérées depuis le fichier XML de l'utilisateur
+	 * @param variables variables à déclarer récupérées depuis le fichier XML de l'utilisateur
 	 * @return retourne une String de la partie haute qui sera par la suite écrite dans un fichier
 	 */
 	public String genererEntete(String variables)
@@ -63,7 +65,7 @@ public class GenererFormulaire
 
 	/**
 	 * Méthode permettant de générer le constructeur du formulaire IHM, en prenant en paramètres les variables à instancier
-	 * @param les variables à instancier récupérées depuis le fichier XML de l'utilisateur
+	 * @param variables les variables à instancier récupérées depuis le fichier XML de l'utilisateur
 	 * @return retourne une String du corps qui sera par la suite écrite dans un fichier
 	 */
 	public String genererCorps(String variables)
