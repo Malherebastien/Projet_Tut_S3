@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Panneau extends JPanel
 {
-    private final int NB_LIGNES = 6;
-    private final int NB_COL = 6;
+    private final int NB_LIGNES = 5;
+    private final int NB_COL = 5;
 
     private int x, y;
     private int previousX, previousY;

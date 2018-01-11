@@ -10,8 +10,8 @@ import java.util.Set;
 public class Tableau extends JFrame implements KeyListener
 {
 
-    private final int NB_LIGNES = 6;
-    private final int NB_COL = 6;
+    private final int NB_LIGNES = 5;
+    private final int NB_COL = 5;
 
     private PanelText panelText;
     private Panneau panneau;
