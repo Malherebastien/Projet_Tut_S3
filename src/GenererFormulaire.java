@@ -3,7 +3,6 @@
  * Lecture d'un fichier XML pour générer une IHM
  * @author : Louis D. ,Brice M. ,Winona M. ,Bastien M. ,Thibaut L.
  */
-
 import org.jdom.*;
 import org.jdom.input.*;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.Set;
 import java.util.HashSet;
-import java.io.FileNotFoundException;
 
 public class GenererFormulaire
 {
@@ -52,6 +50,7 @@ public class GenererFormulaire
 		s+="import java.util.*;\n\n";
 		s+="public class Formulaire extends JFrame implements KeyListener\n{\n";
 		s+="\tArrayList<Object> listeObjet;\n";
+		s+="\tHashMap<Integer,Object> mapObjetsId;\n";
 		s+="\tArrayList<JLabel> listeId;\n";
 		s+="\tArrayList<JLabel> listeType;\n";
 		s+="\tprivate Set<Integer> keyPressed;\n";
@@ -74,8 +73,10 @@ public class GenererFormulaire
 		String s = "";
 		s+="\tpublic Formulaire()\n\t{\n";
 		s+="\t\tsetLocation(200,200);\n";
+		s+="\t\tsetDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n";
 		s+="\t\tsetLayout(new GridBagLayout());\n";
 		s+="\t\tkeyPressed = new HashSet<Integer>();\n";
+		s+="\t\tmapObjetsId = new HashMap<Integer,Object>();\n";
 		s+=variables;
 		s+="\t\taddKeyListener(this);\n";
 		s+="\t\tsetVisible(true);\n";
@@ -207,7 +208,7 @@ public class GenererFormulaire
 
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
-						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+						instanciationVariable+="\t\tmapObjetsId.put("+id+",(Object)"+nomVariable+");\n\n";
 
 						instanciationVariable+="\t\tgbc.gridx = 4;\n";
 						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
@@ -245,13 +246,10 @@ public class GenererFormulaire
 
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
-						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+						instanciationVariable+="\t\tmapObjetsId.put("+id+",(Object)"+nomVariable+");\n\n";
 
 						instanciationVariable+="\t\tgbc.gridx = 4;\n";
 						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
-						instanciationVariable+="\t\tJLabel labelType"+id+" = new JLabel(\""+e.getAttributeValue("type")+"\");\n";
-						instanciationVariable+="\t\tadd(labelType"+id+",gbc);\n";
-						instanciationVariable+="\t\tlisteType.add(labelType"+id+");\n\n";
 						gridY++;
 					}
 					break;
@@ -284,7 +282,7 @@ public class GenererFormulaire
 							instanciationVariable+="\t\t"+nomVariable+".addKeyListener(this);\n";
 						}
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
-						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+						instanciationVariable+="\t\tmapObjetsId.put("+id+",(Object)"+nomVariable+");\n\n";
 
 						instanciationVariable+="\t\tgbc.gridx = 4;\n";
 						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
@@ -326,7 +324,7 @@ public class GenererFormulaire
 							instanciationVariable+="\t\t"+nomVariable+" = new "+type+"(\""+elt.getText()+"\");\n";
 							instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 							instanciationVariable+="\t\t"+nomVariable+".addKeyListener(this);\n";
-							instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+							instanciationVariable+="\t\tmapObjetsId.put("+id+",(Object)"+nomVariable+");\n\n";
 							gridY++;
 							instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 						}
@@ -367,7 +365,7 @@ public class GenererFormulaire
 							instanciationVariable+="\t\tbg.add("+nomVariable+");\n";
 							instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 							instanciationVariable+="\t\t"+nomVariable+".addKeyListener(this);\n";
-							instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+							instanciationVariable+="\t\tmapObjetsId.put("+id+",(Object)"+nomVariable+");\n\n";
 							gridY++;
 							instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
 						}
@@ -399,7 +397,7 @@ public class GenererFormulaire
 						instanciationVariable+="\t\tgbc.gridx = 3;\n";
 						instanciationVariable+="\t\tadd("+nomVariable+",gbc);\n";
 						instanciationVariable+="\t\t((JSpinner.DefaultEditor)"+nomVariable+".getEditor()).getTextField().addKeyListener(this);\n";
-						instanciationVariable+="\t\tlisteObjet.add("+nomVariable+");\n\n";
+						instanciationVariable+="\t\tmapObjetsId.put("+id+",(Object)"+nomVariable+");\n\n";
 
 						instanciationVariable+="\t\tgbc.gridx = 4;\n";
 						instanciationVariable+="\t\tgbc.gridy = "+gridY+";\n";
