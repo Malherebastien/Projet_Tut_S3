@@ -1,79 +1,149 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
-public class Calendrier extends JFrame implements ActionListener
-{
-	private JPanel     panelJour;
-	private JComboBox  cbMois;
-	private JSpinner   annee;
-	private String[][] tabMois = {{"janvier","fevrier","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","decembre"},
-								  {"31","28","31","30","31","30","31","31","30","31","30","31"}};
-	private JButton[] tabBouton = new JButton[200];
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-	public Calendrier()
-	{
+public class Calendrier extends JFrame implements ActionListener, ItemListener,
+		ChangeListener {
+	private JPanel panelJour;
+	private JComboBox<String> cbMois;
+	private JSpinner annee;
+	private String[] tabMois = { "janvier", "fevrier", "mars", "avril", "mai",
+			"juin", "juillet", "août", "septembre", "octobre", "novembre",
+			"decembre" };
+	private ArrayList<JButton> tabButton = new ArrayList<JButton>();
+	private JButton valider = new JButton("Valider");
+	private int dateJ;
+
+	public Calendrier() {
 		this.setTitle("Calendrier");
-		this.setLocationRelativeTo(null);
+		this.setLocation(100, 100);
 		this.setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 10, 0, 5);
 
+		dateJ = 0;
+
 		/* Choix du mois et de l'année */
 		gbc.gridx = 1;
 		gbc.gridx = 1;
 
-		cbMois = new JComboBox();
-		for (int i = 0; i < tabMois[0].length; i++)
-		{
-			cbMois.addItem(tabMois[0][i]);
+		cbMois = new JComboBox<String>();
+		for (int i = 0; i < tabMois.length; i++) {
+			cbMois.addItem(tabMois[i]);
 		}
+
 		cbMois.addActionListener(this);
-		add(cbMois,gbc);
+		cbMois.addItemListener(this);
+		add(cbMois, gbc);
 
 		gbc.gridx = 2;
-		annee = new JSpinner(new SpinnerNumberModel(2018,-1000,5000,1));
-		add(annee,gbc);
-		
+		annee = new JSpinner(new SpinnerNumberModel(2018, -1000, 5000, 1));
+		annee.addChangeListener(this);
+		add(annee, gbc);
+
 		/* Choix des jours */
 		panelJour = new JPanel();
-		panelJour.setLayout(new GridLayout(5,7));
+		panelJour.setLayout(new GridLayout(5, 7));
 
-		for (int i = 0; i < 12; i++)
-		{
-			for (int j = 1; j <= Integer.parseInt(tabMois[1][i]); j++)
-			{
-				tabBouton[j] = new JButton(""+j);
-				tabBouton[j].addActionListener(this);
-			}
-		}
-
-		for (int i = 1; i <= Integer.parseInt(tabMois[1][1]); i++)
-		{
-			panelJour.add(tabBouton[i]);
-		}
+		remplirJour();
 
 		gbc.gridx = 2;
 		gbc.gridy = 1;
 		add(panelJour);
-		
+
 		setVisible(true);
 		pack();
 	}
 
-	public void actionPerformed(ActionEvent e)
-	{
-		for (int i = 0; i < tabBouton.length; i++)
-		{
-			if (e.getSource() == tabBouton[i]) 
-				System.out.println("Nous sommes le " + tabBouton[i].getText() + " " + cbMois.getSelectedItem() + " " + annee.getValue());
+	private void remplirJour() {
+		viderCache();
+		if (cbMois.getSelectedIndex() % 2 == 0) {
+			for (int i = 1; i <= 30; i++) {
+				tabButton.add(new JButton("" + i));
+				tabButton.get(i - 1).addActionListener(this);
+				panelJour.add(tabButton.get(i - 1));
+			}
+		} else {
+			if (cbMois.getSelectedItem().toString().equals("fevrier")) {
+				if (Integer.parseInt(annee.getValue().toString()) % 4 != 0)
+					for (int i = 1; i <= 28; i++) {
+						tabButton.add(new JButton("" + i));
+						tabButton.get(i - 1).addActionListener(this);
+						panelJour.add(tabButton.get(i - 1));
+					}
+				else
+					for (int i = 1; i <= 29; i++) {
+						tabButton.add(new JButton("" + i));
+						tabButton.get(i - 1).addActionListener(this);
+						panelJour.add(tabButton.get(i - 1));
+
+					}
+			} else {
+				for (int i = 1; i <= 31; i++) {
+					tabButton.add(new JButton("" + i));
+					tabButton.get(i - 1).addActionListener(this);
+					panelJour.add(tabButton.get(i - 1));
+				}
+			}
 		}
 	}
 
-	public static void main(String[] args) 
-	{
-		new Calendrier();
+	private void viderCache() {
+		tabButton.clear();
+		panelJour.removeAll();
+	}
+
+	public String toString() {
+
+		String s = (dateJ < 10) ? ("0" + dateJ) : (dateJ + "");
+		for (int i = 0; i < tabMois.length; i++)
+			if (tabMois[i].equals(cbMois.getSelectedItem()))
+				s += "/" + cbMois.getSelectedItem();
+		s += "/" + annee.getValue();
+		return s;
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		for (int i = 0; i < tabButton.size(); i++) {
+			if (e.getSource() == tabButton.get(i))
+				dateJ = Integer.parseInt((tabButton.get(i).getText()));
+		}
+		// System.out.println(this.toString());
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		remplirJour();
+		panelJour.repaint();
+		pack();
+		setLocation(100, 100);
+	}
+
+	public void stateChanged(ChangeEvent e) {
+		remplirJour();
+		panelJour.repaint();
+		pack();
+		setLocation(100, 100);
+	}
+
+	public static void main(String[] args) {
+		Calendrier c = new Calendrier();
+		System.out.println(c.toString());
 	}
 }
