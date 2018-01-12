@@ -73,8 +73,10 @@ public class Calendrier extends JFrame implements ActionListener, ItemListener,
 
 	private void remplirJour() {
 		viderCache();
-		if (cbMois.getSelectedIndex() % 2 == 0) {
-			for (int i = 1; i <= 30; i++) {
+		if (((cbMois.getSelectedIndex() < 7) && cbMois.getSelectedIndex() % 2 == 0)
+				|| (cbMois.getSelectedIndex() >= 7)
+				&& cbMois.getSelectedIndex() % 2 != 0) {
+			for (int i = 1; i <= 31; i++) {
 				tabButton.add(new JButton("" + i));
 				tabButton.get(i - 1).addActionListener(this);
 				panelJour.add(tabButton.get(i - 1));
@@ -95,7 +97,7 @@ public class Calendrier extends JFrame implements ActionListener, ItemListener,
 
 					}
 			} else {
-				for (int i = 1; i <= 31; i++) {
+				for (int i = 1; i <= 30; i++) {
 					tabButton.add(new JButton("" + i));
 					tabButton.get(i - 1).addActionListener(this);
 					panelJour.add(tabButton.get(i - 1));
