@@ -23,7 +23,6 @@ public class Formulaire
 			Component c = mapIdComposant.get(id);
 			if(c instanceof JTextField) s += ((JTextField)(c)).getText();
 			if(c instanceof JRadioButton) s += ((JRadioButton)(c)).getText();
-			if(c instanceof JCheckBox) s += ((JCheckBox)(c)).getText();
 			if(c instanceof JSpinner) s += ((JSpinner)(c)).getValue();
 			if(c instanceof JComboBox) s += ((JComboBox)(c)).getSelectedItem();
 		}
@@ -49,11 +48,6 @@ public class Formulaire
 			if(c instanceof JRadioButton)
 			{
 				s+= ((JRadioButton)(c)).getText();
-				i = Integer.parseInt(s);
-			}
-			if(c instanceof JCheckBox)
-			{
-				s+= ((JCheckBox)(c)).getText();
 				i = Integer.parseInt(s);
 			}
 			if(c instanceof JSpinner)
@@ -88,11 +82,6 @@ public class Formulaire
 			if(c instanceof JRadioButton)
 			{
 				s+= ((JRadioButton)(c)).getText();
-				d = Double.parseDouble(s);
-			}
-			if(c instanceof JCheckBox)
-			{
-				s+= ((JCheckBox)(c)).getText();
 				d = Double.parseDouble(s);
 			}
 			if(c instanceof JSpinner)

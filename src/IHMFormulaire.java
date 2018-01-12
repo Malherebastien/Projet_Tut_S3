@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 {
 	private boolean showId,showType;
+	private static boolean termine;
 	private Generateur gen;
 	private JPanel pan;
 	private ArrayList<Integer> keyEvent;
@@ -22,6 +23,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 
 	public IHMFormulaire(String fichier)
 	{
+		termine = false;
 		setLayout(new BorderLayout());
 		setTitle("Formulaire");
 		setSize(600,600);
@@ -87,7 +89,12 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		{
 			resetComponent(pan);
 		}
-		if(e.getSource() == confirm) dispose();
+		if(e.getSource() == confirm)
+		{
+			System.out.println("Terminé");
+			IHMFormulaire.termine = true;
+			dispose();
+		}
 	}
 
 	private void affichageId()
@@ -143,12 +150,19 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 	}
 
-	public HashMap<Integer,Component> createForm(String fichier)
+	public static HashMap<Integer,Component> createForm(String fichier)
 	{
 		IHMFormulaire ihm = new IHMFormulaire(fichier);
 		int cpt = 1;
 		HashMap<Integer,Component> hashmap = new HashMap<Integer,Component>();
-		Component[] composants = this.getPan().getComponents();
+		while(!IHMFormulaire.termine)
+		{
+			try {
+				Thread.sleep(100);
+			}
+			catch (Exception e) {}
+		}
+		Component[] composants = ihm.getPan().getComponents();
 
 		for(int i = 0; i < composants.length;i++)
 		{
