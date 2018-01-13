@@ -2,10 +2,9 @@ public class MonProgramme
 {
 	public static void main(String[] args)
 	{
-		Formulaire form = new Formulaire(IHMFormulaire.createForm("Test2.xml"));
-		String nom = form.getString(1);
-		String prenom = form.getString(2);
+		Formulaire form = new Formulaire(IHMFormulaire.createForm("../../../src/Test2.xml"));
+		int i = form.getInt(5);
 
-		System.out.println("Je m'appelle "+nom+" "+prenom);
+		System.out.println(i+"");
 	}
 }

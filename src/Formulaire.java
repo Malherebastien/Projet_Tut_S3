@@ -15,6 +15,7 @@ public class Formulaire
 		this.mapIdComposant = mapIdComposant;
 	}
 
+
 	public String getString(int id)
 	{
 		String s = "";
@@ -22,9 +23,9 @@ public class Formulaire
 		{
 			Component c = mapIdComposant.get(id);
 			if(c instanceof JTextField) s += ((JTextField)(c)).getText();
-			if(c instanceof JRadioButton) s += ((JRadioButton)(c)).getText();
-			if(c instanceof JSpinner) s += ((JSpinner)(c)).getValue();
 			if(c instanceof JComboBox) s += ((JComboBox)(c)).getSelectedItem();
+			if(c instanceof JSpinner) s += ((JSpinner)(c)).getValue()+"";
+
 		}
 		catch (Exception e)
 		{
@@ -45,25 +46,22 @@ public class Formulaire
 				s+= ((JTextField)(c)).getText();
 				i = Integer.parseInt(s);
 			}
-			if(c instanceof JRadioButton)
+			if(c instanceof JComboBox)
 			{
-				s+= ((JRadioButton)(c)).getText();
+				s+= ((JComboBox)(c)).getSelectedItem();
 				i = Integer.parseInt(s);
 			}
 			if(c instanceof JSpinner)
 			{
-				s+= ((JSpinner)(c)).getValue();
-				i = Integer.parseInt(s);
-			}
-			if(c instanceof JComboBox)
-			{
-				s+= ((JComboBox)(c)).getSelectedItem();
+				s = ((JSpinner)(c)).getValue().toString();
 				i = Integer.parseInt(s);
 			}
 		}
 		catch (Exception e)
 		{
 			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println(s+" : Valeur impossible à caster en int. Valeur de retour : -1");
 		}
 		return i;
 	}
@@ -79,25 +77,22 @@ public class Formulaire
 				s+= ((JTextField)(c)).getText();
 				d = Double.parseDouble(s);
 			}
-			if(c instanceof JRadioButton)
+			if(c instanceof JComboBox)
 			{
-				s+= ((JRadioButton)(c)).getText();
+				s+= ((JComboBox)(c)).getSelectedItem();
 				d = Double.parseDouble(s);
 			}
 			if(c instanceof JSpinner)
 			{
-				s+= ((JSpinner)(c)).getValue();
-				d = Double.parseDouble(s);
-			}
-			if(c instanceof JComboBox)
-			{
-				s+= ((JComboBox)(c)).getSelectedItem();
+				s = ((JSpinner)(c)).getValue().toString();
 				d = Double.parseDouble(s);
 			}
 		}
 		catch (Exception e)
 		{
 			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println(s+" : Valeur impossible à caster en double. Valeur de retour : - 0.1");
 		}
 		return d;
 	}
@@ -113,7 +108,9 @@ public class Formulaire
 		}
 		catch (Exception e)
 		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.\n La valeur de retour par défaut est False, faites attention.");
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un booléen. Valeur de retour : false");
 		}
 		return b;
 	}
@@ -130,30 +127,23 @@ public class Formulaire
 				s+= ((JTextField)(c)).getText();
 				car = s.charAt(0);
 			}
-			if(c instanceof JRadioButton)
+			if(c instanceof JComboBox)
 			{
-				s+= ((JRadioButton)(c)).getText();
-				car = s.charAt(0);
-			}
-			if(c instanceof JCheckBox)
-			{
-				s+= ((JCheckBox)(c)).getText();
+				s+= ((JComboBox)(c)).getSelectedItem();
+				if(s.length() > 1)System.out.println("\""+s+"\" est une chaine. valeur de retour : Premier caractère de la chaine.");
 				car = s.charAt(0);
 			}
 			if(c instanceof JSpinner)
 			{
-				s+= ((JSpinner)(c)).getValue();
-				car = s.charAt(0);
-			}
-			if(c instanceof JComboBox)
-			{
-				s+= ((JComboBox)(c)).getSelectedItem();
+				s = ((JSpinner)(c)).getValue().toString();
 				car = s.charAt(0);
 			}
 		}
 		catch (Exception e)
 		{
 			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println(s+" : Valeur impossible à caster en char. Valeur de retour : ' '");
 		}
 		return car;
 	}

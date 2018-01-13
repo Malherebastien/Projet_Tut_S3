@@ -3,6 +3,8 @@ import java.awt.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.TreeMap;
 import java.io.File;
 
 import org.jdom.*;
@@ -42,8 +44,15 @@ public class Generateur
 		List<Element> listeObjet = racine.getChildren();
 
 
+		TreeMap<Integer,Element> mapObjet = new TreeMap<Integer,Element>();
 		for(Element e : listeObjet)
 		{
+			mapObjet.put(Integer.parseInt(e.getAttributeValue("id")),e);
+		}
+		for(int key : mapObjet.keySet())
+		{
+			Element e = mapObjet.get(key);
+
 			String type = e.getName();
 			int posX = Integer.parseInt(e.getAttributeValue("x"));
 			int posY = Integer.parseInt(e.getAttributeValue("y"));
@@ -75,22 +84,6 @@ public class Generateur
 					composants[composants.length-1].setLocation(posX+90+largeur,posY);
 					composants[composants.length-1].setSize(new Dimension(150,25));
 					listLabelType.add((JLabel)composants[composants.length-1]);
-				}
-				break;
-
-				case "JLabel" :
-				{
-					int id = Integer.parseInt(e.getAttributeValue("id"));
-					pan.add(new JLabel(id+""));
-					composants = pan.getComponents();
-					composants[composants.length-1].setLocation(posX-20,posY);
-					composants[composants.length-1].setSize(new Dimension(50,25));
-					listLabelId.add((JLabel)composants[composants.length-1]);
-
-					pan.add(new JLabel(e.getAttributeValue("label")+""));
-					composants = pan.getComponents();
-					composants[composants.length-1].setLocation(posX,posY);
-					composants[composants.length-1].setSize(new Dimension(150,25));
 				}
 				break;
 

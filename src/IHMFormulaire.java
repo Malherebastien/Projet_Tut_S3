@@ -164,14 +164,29 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 		Component[] composants = ihm.getPan().getComponents();
 
-		for(int i = 0; i < composants.length;i++)
+		int i = 0;
+		while(i < composants.length)
 		{
 			Component c = composants[i];
 			if(!(c instanceof JLabel))
 			{
-				hashmap.put(cpt,c);
-				cpt++;
+				if(c instanceof JCheckBox ||c instanceof JRadioButton)
+				{
+					cpt++;
+					c = composants[i];
+					while(composants[i] instanceof JCheckBox || composants[i] instanceof JRadioButton)
+					{
+						i++;
+						hashmap.put(cpt,c);
+					}
+				}
+				else
+				{
+					hashmap.put(cpt,c);
+					cpt++;
+				}
 			}
+			i++;
 		}
 		return hashmap;
 	}
