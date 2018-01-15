@@ -160,7 +160,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 		Component[] composants = ihm.getPan().getComponents();
 
-		int i = 0;
+		int i = 0,idActuel = 0;
 		char car = 'a';
 		String id ="";
 		while(i < composants.length)
@@ -168,23 +168,22 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 			Component c = composants[i];
 			if(!(c instanceof JLabel))
 			{
-				if(c instanceof JCheckBox ||c instanceof JRadioButton)
+				if(c instanceof JCheckBox || c instanceof JRadioButton)
 				{
-					c = composants[i];
 					while(c instanceof JCheckBox || c instanceof JRadioButton)
 					{
-						System.out.println(car);
-						id=i+""+car;
-						hashmap.put(id,c);
+						hashmap.put(cpt+""+car,c);
 						car++;
 						i++;
+						if(i == composants.length)break;
 						c = composants[i];
 					}
 					car = 'a';
+					cpt++;
 				}
 				else
 				{
-					hashmap.put(i+"",c);
+					hashmap.put(cpt++ +"",c);
 				}
 			}
 			i++;

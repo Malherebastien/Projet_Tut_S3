@@ -5,6 +5,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
+import java.util.ArrayList;
 
 public class Formulaire
 {
@@ -15,21 +16,19 @@ public class Formulaire
 		this.mapIdComposant = mapIdComposant;
 	}
 
-
 	public String getString(int id)
 	{
 		String s = "";
 		try
 		{
-			Component c = mapIdComposant.get(id);
+			Component c = mapIdComposant.get(id+"");
 			if(c instanceof JTextField) s += ((JTextField)(c)).getText();
 			if(c instanceof JComboBox) s += ((JComboBox)(c)).getSelectedItem();
 			if(c instanceof JSpinner) s += ((JSpinner)(c)).getValue()+"";
-
 		}
 		catch (Exception e)
 		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			if(mapIdComposant.get(id) == null && s.equals(""))System.out.println("Cet id n'appartient à aucun champ de saisie.");
 		}
 		return s;
 	}
@@ -37,10 +36,12 @@ public class Formulaire
 	public int getInt(int id)
 	{
 		int i = -1;
-		String s = "";
+		String s = "",key = id+"";
 		try
 		{
-			Component c = mapIdComposant.get(id);
+
+			Component c = mapIdComposant.get(key);
+
 			if(c instanceof JTextField)
 			{
 				s+= ((JTextField)(c)).getText();
@@ -68,7 +69,7 @@ public class Formulaire
 	public double getDouble(int id)
 	{
 		Double d = -0.1;
-		String s = "";
+		String s = "",key = id+"";
 		try
 		{
 			Component c = mapIdComposant.get(id);
@@ -97,27 +98,9 @@ public class Formulaire
 		return d;
 	}
 
-	public boolean getBoolean(int id)
-	{
-		boolean b = false;
-		try
-		{
-			Component c = mapIdComposant.get(id);
-			if(c instanceof JRadioButton) b = ((JRadioButton)(c)).isSelected();
-			if(c instanceof JCheckBox) b = ((JCheckBox)(c)).isSelected();
-		}
-		catch (Exception e)
-		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
-			else
-				System.out.println("Impossible de récupérer un booléen. Valeur de retour : false");
-		}
-		return b;
-	}
-
 	public char getChar(int id)
 	{
-		String s = "";
+		String s = "",key = id+"";
 		char car = ' ';
 		try
 		{
@@ -147,4 +130,51 @@ public class Formulaire
 		}
 		return car;
 	}
+
+	public Boolean[] getBoolean(int id)
+	{
+		Boolean[] b = null;
+		ArrayList<Component> cases = new ArrayList<Component>();
+		try
+		{
+			for(String key : mapIdComposant.keySet())
+			{
+				if(key.startsWith(id+""))cases.add(mapIdComposant.get(key));
+			}
+
+			b = new Boolean[cases.size()];
+
+			for (int i = 0; i < cases.size();i++)
+			{
+				b[i] = ((JCheckBox)(cases.get(i))).isSelected();
+			}
+		}
+
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un booléen. Valeur de retour : false");
+		}
+		return b;
+	}
+
+	public String[] getTabString(int id)
+	{
+
+	}
+	public int[] getTabInt(int id)
+	{
+
+	}
+	public double[] getTabDouble(int id)
+	{
+
+	}
+	public char[] getTabChar(int id)
+	{
+
+	}
+
+
 }
