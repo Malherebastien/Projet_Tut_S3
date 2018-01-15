@@ -20,9 +20,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
+ * La classe Calendrier permet de selectioner une date via l'année, le mois, et le jour.
+ * Le nombre de jours change en fonction du mois et de l'année sélectionné.
  * 
  * @author cofni
- *
+ * @version 15/01/18
  */
 public class Calendrier extends JFrame implements ActionListener, ItemListener, ChangeListener 
 {

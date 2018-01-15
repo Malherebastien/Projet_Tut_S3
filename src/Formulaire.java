@@ -1,311 +1,150 @@
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
-import java.util.*;
+import java.awt.Component;
+import java.util.HashMap;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
 
-public class Formulaire extends JFrame implements KeyListener
+public class Formulaire
 {
-	ArrayList<Object> listeObjet;
-	ArrayList<JLabel> listeId;
-	ArrayList<JLabel> listeType;
-	private Set<Integer> keyPressed;
-	boolean showId = true, showType = true;
-	private JTextField jtextfield1;
-	private JTextField jtextfield2;
-	private JLabel jlabel1;
-	private JComboBox jcombobox1;
-	private JCheckBox jcheckbox1;
-	private JCheckBox jcheckbox2;
-	private JCheckBox jcheckbox3;
-	private JLabel jlabel2;
-	private JRadioButton jradiobutton1;
-	private JRadioButton jradiobutton2;
-	private JRadioButton jradiobutton3;
-	private JRadioButton jradiobutton4;
-	private JSpinner jspinner1;
+	private HashMap<Integer,Component> mapIdComposant;
 
-	public Formulaire()
+	public Formulaire(HashMap<Integer,Component> mapIdComposant)
 	{
-		setLocation(200,200);
-		setLayout(new GridBagLayout());
-		keyPressed = new HashSet<Integer>();
-		listeObjet = new ArrayList<Object>();
-		listeId = new ArrayList<JLabel>();
-		listeType = new ArrayList<JLabel>();
-		GridBagConstraints gbc = new GridBagConstraints();
-
-		jtextfield1 = new JTextField();
-		jtextfield1.setPreferredSize(new Dimension(150,25));
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		JLabel labelId1 = new JLabel("1");
-		add(labelId1,gbc);
-		listeId.add(labelId1);
-
-		gbc.gridx = 2;
-		add (new JLabel("Nom"),gbc);
-
-		gbc.gridx = 3;
-		add(jtextfield1,gbc);
-		listeObjet.add(jtextfield1);
-
-		gbc.gridx = 4;
-		gbc.gridy = 1;
-		JLabel labelType1 = new JLabel("String");
-		add(labelType1,gbc);
-		jtextfield1.addKeyListener(this);
-		listeType.add(labelType1);
-
-		jtextfield2 = new JTextField();
-		jtextfield2.setPreferredSize(new Dimension(200,25));
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		JLabel labelId2 = new JLabel("2");
-		add(labelId2,gbc);
-		listeId.add(labelId2);
-
-		gbc.gridx = 2;
-		add (new JLabel("Prenom"),gbc);
-
-		gbc.gridx = 3;
-		add(jtextfield2,gbc);
-		listeObjet.add(jtextfield2);
-
-		gbc.gridx = 4;
-		gbc.gridy = 2;
-		JLabel labelType2 = new JLabel("String");
-		add(labelType2,gbc);
-		jtextfield2.addKeyListener(this);
-		listeType.add(labelType2);
-
-		jlabel1 = new JLabel("Partie 1");
-		jlabel1.setSize(150,50);
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 3;
-		JLabel labelId3 = new JLabel("3");
-		gbc.anchor = GridBagConstraints.WEST;
-		add(labelId3,gbc);
-		listeId.add(labelId3);
-
-		gbc.gridx = 3;
-		add(jlabel1,gbc);
-		listeObjet.add(jlabel1);
-
-		gbc.gridx = 4;
-		gbc.gridy = 3;
-		JLabel labelType3 = new JLabel("void");
-		add(labelType3,gbc);
-		listeType.add(labelType3);
-
-		jcombobox1 = new JComboBox();
-		jcombobox1.setPreferredSize(new Dimension(200,25));
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 4;
-		JLabel labelId4 = new JLabel("4");
-		add(labelId4,gbc);
-		listeId.add(labelId4);
-
-		gbc.gridx = 2;
-		add (new JLabel("Choix couleur"),gbc);
-
-		gbc.gridx = 3;
-		jcombobox1.addItem("rouge");
-		jcombobox1.addKeyListener(this);
-		jcombobox1.addItem("bleu");
-		jcombobox1.addKeyListener(this);
-		jcombobox1.addItem("vert");
-		jcombobox1.addKeyListener(this);
-		add(jcombobox1,gbc);
-		listeObjet.add(jcombobox1);
-
-		gbc.gridx = 4;
-		gbc.gridy = 4;
-		JLabel labelType4 = new JLabel("String");
-		add(labelType4,gbc);
-		listeType.add(labelType4);
-
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 5;
-		JLabel labelId5 = new JLabel("5");
-		add(labelId5,gbc);
-		listeId.add(labelId5);
-
-		gbc.gridx = 2;
-		add (new JLabel("Nom de la paire"),gbc);
-
-		gbc.gridx = 4;
-		gbc.gridy = 5;
-		JLabel labelType5 = new JLabel("String");
-		add(labelType5,gbc);
-		listeType.add(labelType5);
-
-		gbc.gridx = 3;
-		jcheckbox1 = new JCheckBox("rouge");
-		add(jcheckbox1,gbc);
-		jcheckbox1.addKeyListener(this);
-		listeObjet.add(jcheckbox1);
-
-		gbc.gridy = 6;
-		jcheckbox2 = new JCheckBox("bleu");
-		add(jcheckbox2,gbc);
-		jcheckbox2.addKeyListener(this);
-		listeObjet.add(jcheckbox2);
-
-		gbc.gridy = 7;
-		jcheckbox3 = new JCheckBox("vert");
-		add(jcheckbox3,gbc);
-		jcheckbox3.addKeyListener(this);
-		listeObjet.add(jcheckbox3);
-
-		gbc.gridy = 8;
-		jlabel2 = new JLabel("Partie 1");
-		jlabel2.setSize(150,50);
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 8;
-		JLabel labelId6 = new JLabel("6");
-		gbc.anchor = GridBagConstraints.WEST;
-		add(labelId6,gbc);
-		listeId.add(labelId6);
-
-		gbc.gridx = 3;
-		add(jlabel2,gbc);
-		listeObjet.add(jlabel2);
-
-		gbc.gridx = 4;
-		gbc.gridy = 8;
-		JLabel labelType6 = new JLabel("void");
-		add(labelType6,gbc);
-		listeType.add(labelType6);
-
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 9;
-		JLabel labelId7 = new JLabel("7");
-		add(labelId7,gbc);
-		listeId.add(labelId7);
-
-		gbc.gridx = 2;
-		add (new JLabel("Choix unique"),gbc);
-
-		gbc.gridx = 4;
-		gbc.gridy = 9;
-		JLabel labelType7 = new JLabel("int");
-		add(labelType7,gbc);
-		listeType.add(labelType7);
-
-		gbc.gridx = 3;
-		ButtonGroup bg = new ButtonGroup();
-		jradiobutton1 = new JRadioButton("1");
-		bg.add(jradiobutton1);
-		add(jradiobutton1,gbc);
-		jradiobutton1.addKeyListener(this);
-		listeObjet.add(jradiobutton1);
-
-		gbc.gridy = 10;
-		jradiobutton2 = new JRadioButton("2");
-		bg.add(jradiobutton2);
-		add(jradiobutton2,gbc);
-		jradiobutton2.addKeyListener(this);
-		listeObjet.add(jradiobutton2);
-
-		gbc.gridy = 11;
-		jradiobutton3 = new JRadioButton("3");
-		bg.add(jradiobutton3);
-		add(jradiobutton3,gbc);
-		jradiobutton3.addKeyListener(this);
-		listeObjet.add(jradiobutton3);
-
-		gbc.gridy = 12;
-		jradiobutton4 = new JRadioButton("4");
-		bg.add(jradiobutton4);
-		add(jradiobutton4,gbc);
-		jradiobutton4.addKeyListener(this);
-		listeObjet.add(jradiobutton4);
-
-		gbc.gridy = 13;
-		jspinner1 = new JSpinner();
-		jspinner1.addKeyListener(this);
-		jspinner1.setPreferredSize(new Dimension(200,25));
-		gbc.insets = new Insets(5, 10, 0, 5);
-
-		gbc.gridx = 1;
-		gbc.gridy = 13;
-		JLabel labelId8 = new JLabel("8");
-		add(labelId8,gbc);
-		listeId.add(labelId8);
-
-		gbc.gridx = 2;
-		add (new JLabel("Spinneeeeeeeer"),gbc);
-
-		gbc.gridx = 3;
-		add(jspinner1,gbc);
-		((JSpinner.DefaultEditor)jspinner1.getEditor()).getTextField().addKeyListener(this);
-		listeObjet.add(jspinner1);
-
-		gbc.gridx = 4;
-		gbc.gridy = 13;
-		JLabel labelType8 = new JLabel("void");
-		add(labelType8,gbc);
-		listeType.add(labelType8);
-
-		addKeyListener(this);
-		setVisible(true);
-		requestFocus();
-		pack();
+		this.mapIdComposant = mapIdComposant;
 	}
 
-	public void keyPressed(KeyEvent e)
-	{		keyPressed.add(e.getKeyCode());
-		if(keyPressed.contains(KeyEvent.VK_CONTROL) && keyPressed.contains(KeyEvent.VK_T))
+
+	public String getString(int id)
+	{
+		String s = "";
+		try
 		{
-			this.affichageTypes();
+			Component c = mapIdComposant.get(id);
+			if(c instanceof JTextField) s += ((JTextField)(c)).getText();
+			if(c instanceof JComboBox) s += ((JComboBox)(c)).getSelectedItem();
+			if(c instanceof JSpinner) s += ((JSpinner)(c)).getValue()+"";
+
 		}
-		if(keyPressed.contains(KeyEvent.VK_CONTROL) && keyPressed.contains(KeyEvent.VK_I))
+		catch (Exception e)
 		{
-			this.affichageId();
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
 		}
-	}
-	public void keyReleased(KeyEvent e)	{
-		keyPressed.remove(e.getKeyCode());
-	}
-	public void keyTyped(KeyEvent e){}
-
-	private void affichageId()
-	{
-		if(showId)
-			for(JLabel jl : listeId)jl.setVisible(false);
-		else
-			for(JLabel jl : listeId)jl.setVisible(true);
-		revalidate();
-		showId = !showId;
+		return s;
 	}
 
-	private void affichageTypes()
+	public int getInt(int id)
 	{
-		if(showType)
-			for(JLabel jl : listeType)jl.setVisible(false);
-		else
-			for(JLabel jl : listeType)jl.setVisible(true);
-		revalidate();
-		showType = !showType;
+		int i = -1;
+		String s = "";
+		try
+		{
+			Component c = mapIdComposant.get(id);
+			if(c instanceof JTextField)
+			{
+				s+= ((JTextField)(c)).getText();
+				i = Integer.parseInt(s);
+			}
+			if(c instanceof JComboBox)
+			{
+				s+= ((JComboBox)(c)).getSelectedItem();
+				i = Integer.parseInt(s);
+			}
+			if(c instanceof JSpinner)
+			{
+				s = ((JSpinner)(c)).getValue().toString();
+				i = Integer.parseInt(s);
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println(s+" : Valeur impossible à caster en int. Valeur de retour : -1");
+		}
+		return i;
+	}
+	public double getDouble(int id)
+	{
+		Double d = -0.1;
+		String s = "";
+		try
+		{
+			Component c = mapIdComposant.get(id);
+			if(c instanceof JTextField)
+			{
+				s+= ((JTextField)(c)).getText();
+				d = Double.parseDouble(s);
+			}
+			if(c instanceof JComboBox)
+			{
+				s+= ((JComboBox)(c)).getSelectedItem();
+				d = Double.parseDouble(s);
+			}
+			if(c instanceof JSpinner)
+			{
+				s = ((JSpinner)(c)).getValue().toString();
+				d = Double.parseDouble(s);
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println(s+" : Valeur impossible à caster en double. Valeur de retour : - 0.1");
+		}
+		return d;
 	}
 
-	public static void main(String[] args)
+	public boolean getBoolean(int id)
 	{
-		new Formulaire();
+		boolean b = false;
+		try
+		{
+			Component c = mapIdComposant.get(id);
+			if(c instanceof JRadioButton) b = ((JRadioButton)(c)).isSelected();
+			if(c instanceof JCheckBox) b = ((JCheckBox)(c)).isSelected();
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un booléen. Valeur de retour : false");
+		}
+		return b;
+	}
+
+	public char getChar(int id)
+	{
+		String s = "";
+		char car = ' ';
+		try
+		{
+			Component c = mapIdComposant.get(id);
+			if(c instanceof JTextField)
+			{
+				s+= ((JTextField)(c)).getText();
+				car = s.charAt(0);
+			}
+			if(c instanceof JComboBox)
+			{
+				s+= ((JComboBox)(c)).getSelectedItem();
+				if(s.length() > 1)System.out.println("\""+s+"\" est une chaine. valeur de retour : Premier caractère de la chaine.");
+				car = s.charAt(0);
+			}
+			if(c instanceof JSpinner)
+			{
+				s = ((JSpinner)(c)).getValue().toString();
+				car = s.charAt(0);
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println(s+" : Valeur impossible à caster en char. Valeur de retour : ' '");
+		}
+		return car;
 	}
 }
