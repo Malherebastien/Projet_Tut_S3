@@ -9,7 +9,9 @@ public class MonProgramme
 		int i = form.getInt(1);
 		int j = form.getInt(2);
 		int k = form.getInt(5);
+		boolean[] cases = form.getBoolean(6);
 
 		System.out.println(i+" "+j+" "+k);
+		for (boolean a : cases) System.out.println(a);
 	}
 }

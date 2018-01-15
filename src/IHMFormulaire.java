@@ -1,3 +1,8 @@
+/**
+ * @author : cofni
+ * Classe IHM permettant la gestion du formulaire créé par le générateur
+ */
+
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -5,7 +10,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.Set;
 import javax.swing.JScrollPane;
 import java.util.HashMap;
 
@@ -26,11 +30,11 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		termine = false;
 		setLayout(new BorderLayout());
 		setTitle("Formulaire");
-		setSize(600,600);
+		setSize(300,300);
 		gen = new Generateur(fichier);
 		pan = gen.createForm();
 		JScrollPane jsp = new JScrollPane(pan);
-		add(jsp);
+		add(jsp, BorderLayout.CENTER);
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

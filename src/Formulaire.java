@@ -60,7 +60,7 @@ public class Formulaire
 		}
 		catch (Exception e)
 		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
 			else
 				System.out.println(s+" : Valeur impossible à caster en int. Valeur de retour : -1");
 		}
@@ -91,7 +91,7 @@ public class Formulaire
 		}
 		catch (Exception e)
 		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
 			else
 				System.out.println(s+" : Valeur impossible à caster en double. Valeur de retour : - 0.1");
 		}
@@ -124,16 +124,21 @@ public class Formulaire
 		}
 		catch (Exception e)
 		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
 			else
 				System.out.println(s+" : Valeur impossible à caster en char. Valeur de retour : ' '");
 		}
 		return car;
 	}
 
-	public Boolean[] getBoolean(int id)
+
+
+
+
+
+	public boolean[] getBoolean(int id)
 	{
-		Boolean[] b = null;
+		boolean[] b = null;
 		ArrayList<Component> cases = new ArrayList<Component>();
 		try
 		{
@@ -142,38 +147,161 @@ public class Formulaire
 				if(key.startsWith(id+""))cases.add(mapIdComposant.get(key));
 			}
 
-			b = new Boolean[cases.size()];
+			b = new boolean[cases.size()];
 
 			for (int i = 0; i < cases.size();i++)
 			{
-				b[i] = ((JCheckBox)(cases.get(i))).isSelected();
+				b[i] = ((JRadioButton)(cases.get(i))).isSelected();
 			}
 		}
 
 		catch (Exception e)
 		{
-			if(mapIdComposant.get(id) == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
 			else
 				System.out.println("Impossible de récupérer un booléen. Valeur de retour : false");
 		}
 		return b;
 	}
 
-	public String[] getTabString(int id)
-	{
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public String[] getCasesString(int id)
+	{
+		String[] valeurs = null;
+		JCheckBox c;
+		ArrayList<Component> cases = new ArrayList<Component>();
+		ArrayList<String> retour = new ArrayList<String>();
+		try
+		{
+			for(String key : mapIdComposant.keySet())
+			{
+				if(key.startsWith(id+""))cases.add(mapIdComposant.get(key));
+			}
+
+			for (int i = 0; i < cases.size();i++)
+			{
+				c = (JCheckBox)(cases.get(i));
+				if(c.isSelected())retour.add(c.getText());
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un tableau de String. Valeur de retour : null");
+		}
+		return retour.toArray(new String[retour.size()]);
 	}
-	public int[] getTabInt(int id)
-	{
 
+
+	public int[] getCasesInt(int id)
+	{
+		JCheckBox c;
+		ArrayList<Component> cases = new ArrayList<Component>();
+		ArrayList<Integer> retour = new ArrayList<Integer>();
+		try
+		{
+			for(String key : mapIdComposant.keySet())
+			{
+				if(key.startsWith(id+""))cases.add(mapIdComposant.get(key));
+			}
+
+			for (int i = 0; i < cases.size();i++)
+			{
+				c = (JCheckBox)(cases.get(i));
+				System.out.println(c.isSelected());
+				if(c.isSelected())retour.add(Integer.parseInt(c.getText()));
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un tableau d'int. Valeur de retour : null");
+		}
+		int[] tabRetour = new int[retour.size()];
+		for (int i = 0; i < retour.size();i++)tabRetour[i] = retour.get(i);
+		return tabRetour;
 	}
-	public double[] getTabDouble(int id)
+	public double[] getCasesDouble(int id)
 	{
+		JCheckBox c;
+		ArrayList<Component> cases = new ArrayList<Component>();
+		ArrayList<Double> retour = new ArrayList<Double>();
+		try
+		{
+			for(String key : mapIdComposant.keySet())
+			{
+				if(key.startsWith(id+""))cases.add(mapIdComposant.get(key));
+			}
 
+
+			for (int i = 0; i < cases.size();i++)
+			{
+				c = (JCheckBox)(cases.get(i));
+				if(c.isSelected())retour.add(Double.parseDouble(c.getText()));
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un tableau de double. Valeur de retour : null");
+		}
+		double[] tabRetour = new double[retour.size()];
+		for (int i = 0; i < retour.size();i++)tabRetour[i] = retour.get(i);
+		return tabRetour;
 	}
-	public char[] getTabChar(int id)
+	public char[] getCasesChar(int id)
 	{
+		JCheckBox c;
+		ArrayList<Component> cases = new ArrayList<Component>();
+		ArrayList<Character> retour = new ArrayList<Character>();
+		try
+		{
+			for(String key : mapIdComposant.keySet())
+			{
+				if(key.startsWith(id+""))cases.add(mapIdComposant.get(key));
+			}
 
+
+			for (int i = 0; i < cases.size();i++)
+			{
+				c = (JCheckBox)(cases.get(i));
+				if(c.isSelected()) retour.add(c.getText().charAt(0));
+			}
+		}
+		catch (Exception e)
+		{
+			if(mapIdComposant.get(id+"") == null)System.out.println("Cet id n'appartient à aucun champ de saisie.");
+			else
+				System.out.println("Impossible de récupérer un tableau de char. Valeur de retour : null");
+		}
+		char[] tabRetour = new char[retour.size()];
+		for (int i = 0; i < retour.size();i++)tabRetour[i] = retour.get(i);
+		return tabRetour;
 	}
 
 

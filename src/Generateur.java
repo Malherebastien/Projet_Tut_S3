@@ -41,6 +41,7 @@ public class Generateur
 	public JPanel createForm()
 	{
 		JPanel pan = new JPanel(null);
+
 		List<Element> listeObjet = racine.getChildren();
 
 
