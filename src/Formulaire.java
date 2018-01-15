@@ -304,5 +304,61 @@ public class Formulaire
 		return tabRetour;
 	}
 
+	public String[][] getTabString(int id)
+	{
+		String[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauString ps = (PanneauString)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) {}
+		return retour;
+	}
+	public int[][] getTabInt(int id)
+	{
+		int[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauInt ps = (PanneauInt)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+	public double[][] getTabDouble(int id)
+	{
+		double[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauDouble ps = (PanneauDouble)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+	public char[][] getTabChar(int id)
+	{
+		char[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauChar ps = (PanneauChar)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+	public boolean[][] getTabBooleen(int id)
+	{
+		boolean[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauBooleen ps = (PanneauBooleen)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+
 
 }

@@ -18,6 +18,10 @@ public class PanneauBooleen extends Panneau
         return "" + tab[lig][col];
     }
 
+	public boolean[][] getTab()
+	{
+		return tab;
+	}
+
 
 }
-

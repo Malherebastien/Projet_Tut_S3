@@ -30,7 +30,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		termine = false;
 		setLayout(new BorderLayout());
 		setTitle("Formulaire");
-		setSize(300,300);
+		setSize(1000,1000);
 		gen = new Generateur(fichier);
 		pan = gen.createForm();
 		JScrollPane jsp = new JScrollPane(pan);

@@ -17,7 +17,7 @@
 	<JRadioButton label="Choix unique"  id="6" x="100" y="350" largeur="150" type="int">
 		<radioButton id="6a">1</radioButton>
 	</JRadioButton>
-	<!-- <Tableau label="tableau 2 dim"  col="8" lig="8" type="int"/>
-	<Tableau label="tableau 1 dim"  col="8" type="String"/>
-	<Calendrier x="150" y="50" largeur="200"/> -->
+	<Tableau label="tableau" id="7" col="5" lig="5" type="String" dimension="2" longueur="300" largeur="300" x="500" y ="400"/>
+	<!-- <Tableau label="tableau 1 dim"  col="8" type="String"/> -->
+	<!-- <Calendrier x="150" y="50" largeur="200"/> -->
 </formulaire>

@@ -217,6 +217,41 @@ public class Generateur
 				}
 				break;
 
+				case "Tableau" :
+				{
+					int id = Integer.parseInt(e.getAttributeValue("id"));
+					int nbLig = Integer.parseInt(e.getAttributeValue("lig"));
+					int nbCol = Integer.parseInt(e.getAttributeValue("col"));
+					int dimension = Integer.parseInt(e.getAttributeValue("dimension"));
+					int longueur = Integer.parseInt(e.getAttributeValue("longueur"));
+					String typeRetour = e.getAttributeValue("type");
+					posX = Integer.parseInt(e.getAttributeValue("x"));
+					posY = Integer.parseInt(e.getAttributeValue("y"));
+					largeur = Integer.parseInt(e.getAttributeValue("largeur"));
+
+					pan.add(new JLabel(id+""));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX-20,posY);
+					composants[composants.length-1].setSize(new Dimension(50,25));
+					listLabelId.add((JLabel)composants[composants.length-1]);
+
+					pan.add(new JLabel(e.getAttributeValue("label")+""));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX-60,posY+20);
+					composants[composants.length-1].setSize(new Dimension(150,25));
+
+					Tableau tab = new Tableau(typeRetour,nbLig,nbCol,dimension,posX,posY,longueur,largeur);
+					pan.add(tab);
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX,posY);
+					composants[composants.length-1].setSize(longueur,largeur);
+					pan.add(new JLabel(e.getAttributeValue("type")));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX+90+largeur,posY);
+					composants[composants.length-1].setSize(new Dimension(150,25));
+					listLabelType.add((JLabel)composants[composants.length-1]);
+				}
+
 				default: continue;
 			}
 		}

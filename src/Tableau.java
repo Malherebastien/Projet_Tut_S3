@@ -6,16 +6,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tableau extends JFrame implements KeyListener
+public class Tableau extends JPanel implements KeyListener
 {
 
-<<<<<<< HEAD
     private int nbLignes;
     private int nbColonnes;
-=======
     private final int NB_LIGNES = 5;
     private final int NB_COL = 5;
->>>>>>> e00d4fe6bf557c30f5da7da12ca5ff4e83b409ca
 
     private PanelText panelText;
     private Panneau panneau;
@@ -35,6 +32,7 @@ public class Tableau extends JFrame implements KeyListener
 
     public Tableau(String type, int nbLig, int nbCol, int dimension, int posX, int posY, int hauteur, int largeur)
     {
+
         this.x = 0;
         this.y = 0;
 
@@ -61,8 +59,7 @@ public class Tableau extends JFrame implements KeyListener
 
         this.keyPressed = new HashSet<>();
 
-        this.setSize(500,500);
-        this.setLocationRelativeTo(null);
+        this.setSize(hauteur,largeur);
 
         this.listJLabel = new ArrayList<>();
 
@@ -86,17 +83,16 @@ public class Tableau extends JFrame implements KeyListener
         panelText = new PanelText(this);
         BorderLayout bl = new BorderLayout();
         this.setLayout(null);
-        panneau.setSize(largeur, hauteur);
-        panneau.setLocation(posX,posY);
+        panneau.setSize(largeur-50, hauteur-50);
+        panneau.setLocation(20,20);
         add(panneau);
 
         this.createNumberPanel();
 
         panelText.setSize(400, 30);
-        panelText.setLocation(20, 375);
-        add(panelText);
+        panelText.setLocation(20, largeur-25);
+		add(panelText);
         this.addKeyListener(this);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.requestFocus();
     }
@@ -191,9 +187,9 @@ public class Tableau extends JFrame implements KeyListener
             if(keyPressed.contains(KeyEvent.VK_LEFT) && keyPressed.contains(KeyEvent.VK_SHIFT))
                 x = 0;
             if(keyPressed.contains(KeyEvent.VK_DOWN) && keyPressed.contains(KeyEvent.VK_SHIFT))
-                y = nbColonnes;
+                y = nbCol;
             if(keyPressed.contains(KeyEvent.VK_RIGHT) && keyPressed.contains(KeyEvent.VK_SHIFT))
-                x = nbLignes;
+                x = nbLig;
 
             this.createNumberPanel();
         }
