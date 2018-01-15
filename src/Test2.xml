@@ -15,10 +15,10 @@
 		<checkBox id="5c">vert</checkBox>
 	</JCheckBox>
 	<JRadioButton label="Choix unique"  id="6" x="100" y="350" largeur="150" type="int">
-		<radioButton>1</radioButton>
-		<radioButton>2</radioButton>
-		<radioButton>3</radioButton>
-		<radioButton>4</radioButton>
+		<radioButton id="6a">1</radioButton>
+		<radioButton id="6b">2</radioButton>
+		<radioButton id="6c">3</radioButton>
+		<radioButton id="6d">4</radioButton>
 	</JRadioButton>
 	<!-- <Tableau label="tableau 2 dim"  col="8" lig="8" type="int"/>
 	<Tableau label="tableau 1 dim"  col="8" type="String"/>
