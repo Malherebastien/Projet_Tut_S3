@@ -3,11 +3,20 @@ import java.awt.*;
 
 public class Panneau extends JPanel
 {
-    private final int NB_LIGNES = 6;
-    private final int NB_COL = 6;
+
+    private final int NB_LIGNES = 5;
+    private final int NB_COL = 5;
 
     private int x, y;
     private int previousX, previousY;
+
+    private int nbLig, nbCol;
+
+    public Panneau(int nbLig, int nbCol)
+    {
+        this.nbLig = nbLig;
+        this.nbCol = nbCol;
+    }
 
     public void paintComponent(Graphics g)
     {
@@ -34,18 +43,43 @@ public class Panneau extends JPanel
 
         //On dessine les lignes du tableau
         g.setColor(Color.BLACK);
-        for (int i = 1; i < NB_COL; i++)
+        for (int i = 0; i < NB_COL; i++)
             g.drawLine((this.getWidth()/NB_COL)*i, 0, (this.getWidth()/NB_COL)*i, this.getHeight());
-        for (int i = 1; i < NB_LIGNES; i++)
+        for (int i = 0; i < NB_LIGNES; i++)
             g.drawLine( 0,(this.getHeight()/NB_LIGNES)*i, this.getWidth(), (this.getHeight()/NB_LIGNES)*i);
+
+        g.drawLine(this.getWidth()-1, 0, this.getWidth()-1, this.getHeight()-1);
+        g.drawLine(0, this.getHeight()-1, this.getWidth()-1, this.getHeight()-1);
+
     }
 
     public void deplacerSelection(int x, int y)
     {
-        this.previousX = this.x;
-        this.previousY = this.y;
-        this.x = x;
-        this.y = y;
+        this.previousX = this.x%5;
+        this.previousY = this.y%5;
+        this.x = x%5;
+        this.y = y%5;
         this.repaint();
+    }
+
+    public void caseValue(String value, int lig, int col)
+    {
+        //Redéfinie dans les classes filles
+    }
+
+    public String getValue(int lig, int col)
+    {
+        //Redéfinie dans les classes filles
+        return null;
+    }
+
+    public int getNbLig()
+    {
+        return nbLig;
+    }
+
+    public int getNbCol()
+    {
+        return nbCol;
     }
 }
