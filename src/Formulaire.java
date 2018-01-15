@@ -360,5 +360,22 @@ public class Formulaire
 		return retour;
 	}
 
+	public String getDate(int id)
+	{
+		Calendrier c = null;
+		String s = "";
+		try {
+			c = (Calendrier)mapIdComposant.get(id+"");
+			s = c.getDate();
+		}
+		catch (Exception e)
+		{
+			if(c == null)System.out.println("Cet id n'appartient pas à une instance de calendrier.");
+			else
+				System.out.println("Impossible de récupérer une date.");
+		}
+		return s;
+	}
+
 
 }
