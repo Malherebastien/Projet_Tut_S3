@@ -9,8 +9,13 @@ import java.util.Set;
 public class Tableau extends JFrame implements KeyListener
 {
 
+<<<<<<< HEAD
     private int nbLignes;
     private int nbColonnes;
+=======
+    private final int NB_LIGNES = 5;
+    private final int NB_COL = 5;
+>>>>>>> e00d4fe6bf557c30f5da7da12ca5ff4e83b409ca
 
     private PanelText panelText;
     private Panneau panneau;

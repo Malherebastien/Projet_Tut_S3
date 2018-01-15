@@ -3,7 +3,10 @@ import java.awt.*;
 
 public class Panneau extends JPanel
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> e00d4fe6bf557c30f5da7da12ca5ff4e83b409ca
     private final int NB_LIGNES = 5;
     private final int NB_COL = 5;
 
