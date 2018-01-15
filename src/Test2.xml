@@ -10,9 +10,9 @@
 	</JComboBox>
 	<JSpinner label="Spinner"  id="5" x="100" y="500"  largeur="150" type="int"/>
 	<JCheckBox label="Nom de la paire"  id="4" x="100" y="250" largeur="70" type="String">
-		<checkBox>rouge</checkBox>
-		<checkBox>bleu</checkBox>
-		<checkBox>vert</checkBox>
+		<checkBox id="5a">rouge</checkBox>
+		<checkBox id="5b">bleu</checkBox>
+		<checkBox id="5c">vert</checkBox>
 	</JCheckBox>
 	<JRadioButton label="Choix unique"  id="6" x="100" y="350" largeur="150" type="int">
 		<radioButton>1</radioButton>

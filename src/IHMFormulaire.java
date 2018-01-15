@@ -29,12 +29,8 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		setSize(600,600);
 		gen = new Generateur(fichier);
 		pan = gen.createForm();
-		add(pan,BorderLayout.CENTER);
-
-		jsbVer = new JScrollBar(JScrollBar.VERTICAL);
-		jsbHor = new JScrollBar(JScrollBar.HORIZONTAL);
-		pan.add(jsbVer);
-		pan.add(jsbHor);
+		JScrollPane jsp = new JScrollPane(pan);
+		add(jsp);
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -150,11 +146,11 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 	}
 
-	public static HashMap<Integer,Component> createForm(String fichier)
+	public static HashMap<String,Component> createForm(String fichier)
 	{
 		IHMFormulaire ihm = new IHMFormulaire(fichier);
 		int cpt = 1;
-		HashMap<Integer,Component> hashmap = new HashMap<Integer,Component>();
+		HashMap<String,Component> hashmap = new HashMap<String,Component>();
 		while(!IHMFormulaire.termine)
 		{
 			try {
@@ -165,6 +161,8 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		Component[] composants = ihm.getPan().getComponents();
 
 		int i = 0;
+		char car = 'a';
+		String id ="";
 		while(i < composants.length)
 		{
 			Component c = composants[i];
@@ -172,18 +170,21 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 			{
 				if(c instanceof JCheckBox ||c instanceof JRadioButton)
 				{
-					cpt++;
 					c = composants[i];
-					while(composants[i] instanceof JCheckBox || composants[i] instanceof JRadioButton)
+					while(c instanceof JCheckBox || c instanceof JRadioButton)
 					{
+						System.out.println(car);
+						id=i+""+car;
+						hashmap.put(id,c);
+						car++;
 						i++;
-						hashmap.put(cpt,c);
+						c = composants[i];
 					}
+					car = 'a';
 				}
 				else
 				{
-					hashmap.put(cpt,c);
-					cpt++;
+					hashmap.put(i+"",c);
 				}
 			}
 			i++;

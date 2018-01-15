@@ -8,9 +8,9 @@ import javax.swing.JComboBox;
 
 public class Formulaire
 {
-	private HashMap<Integer,Component> mapIdComposant;
+	private HashMap<String,Component> mapIdComposant;
 
-	public Formulaire(HashMap<Integer,Component> mapIdComposant)
+	public Formulaire(HashMap<String,Component> mapIdComposant)
 	{
 		this.mapIdComposant = mapIdComposant;
 	}
