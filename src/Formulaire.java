@@ -365,9 +365,12 @@ public class Formulaire
 	}
 
 	/**
-	 * A COMMENTER A PARTIR D'ICI
-	 */
-
+	* Méthode permettant de retourner les valeurs de l'instance de Tableau avec l'id en paramètre
+	* Il retourne le composant sous forme d'un tableau de String.
+	*
+	* @param id permet de retourner le tableau à l'indice id
+	* @return un tableau a double dimensions de chaine de caractère
+	*/
 	public String[][] getTabString(int id)
 	{
 		String[][] retour = null;
@@ -377,67 +380,105 @@ public class Formulaire
 			retour = ps.getTab();
 		}
 		catch (Exception e) {}
-			return retour;
-		}
-		public int[][] getTabInt(int id)
-		{
-			int[][] retour = null;
-			try {
-				Tableau t = (Tableau)mapIdComposant.get(id+"");
-				PanneauInt ps = (PanneauInt)t.getPanneau();
-				retour = ps.getTab();
-			}
-			catch (Exception e) { System.out.println(e); }
-			return retour;
-		}
-		public double[][] getTabDouble(int id)
-		{
-			double[][] retour = null;
-			try {
-				Tableau t = (Tableau)mapIdComposant.get(id+"");
-				PanneauDouble ps = (PanneauDouble)t.getPanneau();
-				retour = ps.getTab();
-			}
-			catch (Exception e) { System.out.println(e); }
-			return retour;
-		}
-		public char[][] getTabChar(int id)
-		{
-			char[][] retour = null;
-			try {
-				Tableau t = (Tableau)mapIdComposant.get(id+"");
-				PanneauChar ps = (PanneauChar)t.getPanneau();
-				retour = ps.getTab();
-			}
-			catch (Exception e) { System.out.println(e); }
-			return retour;
-		}
-		public boolean[][] getTabBooleen(int id)
-		{
-			boolean[][] retour = null;
-			try {
-				Tableau t = (Tableau)mapIdComposant.get(id+"");
-				PanneauBooleen ps = (PanneauBooleen)t.getPanneau();
-				retour = ps.getTab();
-			}
-			catch (Exception e) { System.out.println(e); }
-			return retour;
-		}
-
-		public String getDate(int id)
-		{
-			Calendrier c = null;
-			String s = "";
-			try {
-				c = (Calendrier)mapIdComposant.get(id+"");
-				s = c.getDate();
-			}
-			catch (Exception e)
-			{
-				if(c == null)System.out.println("Cet id n'appartient pas à une instance de calendrier.");
-				else
-				System.out.println("Impossible de récupérer une date.");
-			}
-			return s;
-		}
+		return retour;
 	}
+
+	/**
+	* Méthode permettant de retourner les valeurs de l'instance de Tableau avec l'id en paramètre
+	* Il retourne le composant sous forme d'un tableau d'entier.
+	*
+	* @param id permet de retourner le tableau à l'indice id
+	* @return un tableau a double dimensions d'entier
+	*/
+	public int[][] getTabInt(int id)
+	{
+		int[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauInt ps = (PanneauInt)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+
+	/**
+	* Méthode permettant de retourner les valeurs de l'instance de Tableau avec l'id en paramètre
+	* Il retourne le composant sous forme d'un tableau de double.
+	*
+	* @param id permet de retourner le tableau à l'indice id
+	* @return un tableau a double dimensions de double
+	*/
+	public double[][] getTabDouble(int id)
+	{
+		double[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauDouble ps = (PanneauDouble)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+
+	/**
+	* Méthode permettant de retourner les valeurs de l'instance de Tableau avec l'id en paramètre
+	* Il retourne le composant sous forme d'un tableau de caractère.
+	*
+	* @param id permet de retourner le tableau à l'indice id.
+	* @return un tableau a double dimensions de caractère.
+	*/
+	public char[][] getTabChar(int id)
+	{
+		char[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauChar ps = (PanneauChar)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+
+	/**
+	* Méthode permettant de retourner les valeurs de l'instance de Tableau avec l'id en paramètre
+	* Il retourne le composant sous forme d'un tableau de booléen.
+	*
+	* @param id permet de retourner le tableau à l'indice id.
+	* @return un tableau a double dimensions de booléen.
+	*/
+	public boolean[][] getTabBooleen(int id)
+	{
+		boolean[][] retour = null;
+		try {
+			Tableau t = (Tableau)mapIdComposant.get(id+"");
+			PanneauBooleen ps = (PanneauBooleen)t.getPanneau();
+			retour = ps.getTab();
+		}
+		catch (Exception e) { System.out.println(e); }
+		return retour;
+	}
+
+	/**
+	* Méthode permettant de retourner la date à l'aide d'un id
+	*
+	* @param id permet de retourner la date à l'indice id.
+	* @return retourne la date sous forme d'une chaine de caractère au format JJ/MM/AAAA
+	*/
+	public String getDate(int id)
+	{
+		Calendrier c = null;
+		String s = "";
+		try {
+			c = (Calendrier)mapIdComposant.get(id+"");
+			s = c.getDate();
+		}
+		catch (Exception e)
+		{
+			if(c == null)System.out.println("Cet id n'appartient pas à une instance de calendrier.");
+			else
+			System.out.println("Impossible de récupérer une date.");
+		}
+		return s;
+	}
+}
