@@ -18,6 +18,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.BorderFactory;
+import java.awt.Color;
 
 /**
  * La classe Calendrier permet de selectioner une date via l'année, le mois, et le jour.
@@ -139,6 +141,7 @@ public class Calendrier extends JPanel implements ActionListener, ItemListener, 
 		add(this.panelJour);
 
 		setVisible(true);
+		setBorder(BorderFactory.createTitledBorder("Calendrier"));
 	}
 
 	/**
