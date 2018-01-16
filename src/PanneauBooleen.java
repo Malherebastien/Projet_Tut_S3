@@ -56,8 +56,4 @@ public class PanneauBooleen extends Panneau
 	{
 		return tab;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 97ebdb71a03ca00beeb6e4bc68ff5cb0d39c0a27
