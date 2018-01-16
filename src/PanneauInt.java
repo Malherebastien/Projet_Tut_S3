@@ -45,7 +45,7 @@ public class PanneauInt extends Panneau
      */
     public String getValue(int lig, int col)
     {
-        return tab[lig][col];
+        return tab[lig][col]+"";
     }
 
     /**

@@ -268,10 +268,11 @@ public class Generateur
 
 				case "Tableau" :
 				{
+					int nbCol = 1;
 					int id = Integer.parseInt(e.getAttributeValue("id"));
-					int nbLig = Integer.parseInt(e.getAttributeValue("lig"));
-					int nbCol = Integer.parseInt(e.getAttributeValue("col"));
 					int dimension = Integer.parseInt(e.getAttributeValue("dimension"));
+					if(dimension == 2)nbCol = Integer.parseInt(e.getAttributeValue("col"));
+					int nbLig = Integer.parseInt(e.getAttributeValue("lig"));
 					int longueur = Integer.parseInt(e.getAttributeValue("longueur"));
 					String typeRetour = e.getAttributeValue("type");
 					posX = Integer.parseInt(e.getAttributeValue("x"));
