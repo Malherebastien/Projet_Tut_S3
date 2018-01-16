@@ -6,17 +6,39 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * La classe Tableau permet de créer un tableau d'une type donné.
+ * Possibilité de créer un tableau à une ou deux dimensions
+ * 
+ * @author cofni
+ * @version 15/01/18
+ */
 public class Tableau extends JFrame implements KeyListener
 {
-
-<<<<<<< HEAD
+    /**
+      * Le nombre de lignes du tableau
+      */
     private int nbLignes;
-    private int nbColonnes;
-=======
-    private final int NB_LIGNES = 5;
-    private final int NB_COL = 5;
->>>>>>> e00d4fe6bf557c30f5da7da12ca5ff4e83b409ca
 
+    /**
+      * Le nombre de colonnes du tableau
+      */
+    private int nbColonnes;
+
+    /**
+      * Le nombre de lignes défini en constante du tableau
+      */
+    private final int NB_LIGNES = 5;
+    
+    /**
+      * Le nombre de colonnes défini en constante du tableau
+      */
+    private final int NB_COL = 5;
+
+
+    /**
+      * Le nombre de lignes défini en constante du tableau
+      */
     private PanelText panelText;
     private Panneau panneau;
     private int x;

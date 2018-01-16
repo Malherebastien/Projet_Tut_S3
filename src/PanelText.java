@@ -3,11 +3,23 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * La classe PanelText permet de gérer les indices affichés du tableau
+ *
+ * @author cofni
+ * @version 15/01/18
+ */
 public class PanelText extends JPanel implements KeyListener
 {
+    /**
+     * 
+     */
     private Tableau parent;
     private JTextField text;
 
+    /**
+     * Constructeur 
+     */
     public PanelText(Tableau parent)
     {
         this.parent = parent;
@@ -19,11 +31,18 @@ public class PanelText extends JPanel implements KeyListener
         add(text, BorderLayout.CENTER);
     }
 
+    /**
+     * Permet de gérer le focus du tableau
+     */
     public void getFocus()
     {
         this.requestFocus();
     }
 
+    /**
+     * Permet d'initialiser le TextField
+     * @param newText est le texte à mettre dans le TextField
+     */
     public void setText(String newText)
     {
         text.setText(newText);
@@ -53,6 +72,13 @@ public class PanelText extends JPanel implements KeyListener
 
     }
 
+    /**
+     * Méthode permettant de savoir si la chaine passé
+     * en paramètre est un entier
+     *
+     * @param Chaine de caractère devant être converti en entier
+     * @return Booléen pour savoir si la chaine en paramètre est un entier ou non
+     */
     public static boolean isInteger(String s)
     {
         try {
