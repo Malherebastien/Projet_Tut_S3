@@ -48,21 +48,12 @@ public class PanneauBooleen extends Panneau
         return "" + tab[lig][col];
     }
 
-<<<<<<< HEAD
     /**
      * Permet de retourner le tableau créer ci-dessus
      * @return le tableau dans son intégralité
      */
-=======
->>>>>>> a5d87e69a2b19cf7de7617111be895dd8a6cc512
 	public boolean[][] getTab()
 	{
 		return tab;
 	}
-<<<<<<< HEAD
 }
-=======
-
-
-}
->>>>>>> a5d87e69a2b19cf7de7617111be895dd8a6cc512

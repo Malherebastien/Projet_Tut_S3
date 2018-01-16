@@ -2,24 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 /**
  * La classe Panneau permet de créer un panel
- * dans le but d'afficher le tableau 
+ * dans le but d'afficher le tableau
  *
  * @author cofni
  * @version 15/01/18
  */
 public class Panneau extends JPanel
 {
-<<<<<<< HEAD
     /**
      * Constante permettant de définir le nombre de lignes du tableau
      *
      * @see Panneau#paintComponent()
      */
-=======
->>>>>>> a5d87e69a2b19cf7de7617111be895dd8a6cc512
     private final int NB_LIGNES = 5;
     /**
-     * Constante permettant de définir le nombre de colonnes du tableau 
+     * Constante permettant de définir le nombre de colonnes du tableau
      *
      * @see Panneau#paintComponent()
      */
@@ -32,19 +29,19 @@ public class Panneau extends JPanel
      */
     private int x;
     /**
-     * Constante permettant de définir le nombre de lignes 
+     * Constante permettant de définir le nombre de lignes
      *
      * @see Panneau#deplacerSelection()
      */
     private int y;
 
     /**
-     * 
+     *
      */
     private int previousX;
 
     /**
-     * 
+     *
      */
     private int previousY;
 
@@ -101,7 +98,7 @@ public class Panneau extends JPanel
 
         //On dessine les lignes du tableau
         g.setColor(Color.BLACK);
-        for (intà i = 0; i < NB_COL; i++)
+        for (int i = 0; i < NB_COL; i++)
             g.drawLine((this.getWidth()/NB_COL)*i, 0, (this.getWidth()/NB_COL)*i, this.getHeight());
         for (int i = 0; i < NB_LIGNES; i++)
             g.drawLine( 0,(this.getHeight()/NB_LIGNES)*i, this.getWidth(), (this.getHeight()/NB_LIGNES)*i);
