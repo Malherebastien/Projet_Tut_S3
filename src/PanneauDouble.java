@@ -25,7 +25,7 @@ public class PanneauDouble extends Panneau
     }
 
     /**
-     * Permet d'initialiser la case du tableau à l'indice donné avec la valeur souhaité
+     * Permet d'initialiser la case du tableau aux indices donnés avec la valeur souhaitée
      *
      * @param value est la valeur à insérer dans le tableau à l'indice donné
      * @param lig est l'indice pour la ligne pour l'insertion dans le tableau
@@ -37,7 +37,7 @@ public class PanneauDouble extends Panneau
     }
 
     /**
-     * Permet de retourner la valeur du tableau aux indices donné
+     * Permet de retourner la valeur du tableau aux indices donnés
      *
      * @param lig est l'indice de la ligne pour la zone à retourner dans le tableau
      * @param col est l'indice de la colonne pour la zone à retourner dans le tableau
@@ -48,9 +48,12 @@ public class PanneauDouble extends Panneau
         return "" + tab[lig][col];
     }
 
+    /**
+     * Permet de retourner le tableau créer ci-dessus
+     * @return le tableau dans son intégralité
+     */
     public double[][] getTab()
     {
         return tab;
     }
 }
-

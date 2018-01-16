@@ -1,8 +1,3 @@
-/**
- * @author : cofni
- * Classe IHM permettant la gestion du formulaire créé par le générateur
- */
-
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,23 +8,90 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.util.HashMap;
 
+/**
+ * @author : cofni
+ * Classe IHM permettant la gestion du formulaire créé par le générateur
+ */
 public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 {
-	private boolean showId,showType;
+	/**
+	 * Attribut de type boolean permettant de savoir si la Frame est fermé ou non
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#actionPerformed
+	 * @see IHMFormulaire#createForm
+	 */
 	private static boolean termine;
+
+	/**
+	 * Attribut de type boolean permettant de savoir si l'id est affiché ou non
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#affichageId
+	 */
+	private boolean showId;
+
+	/**
+	 * Attribut de type boolean permettant de savoir si le type est affiché ou non
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#affichageType
+	 */
+	private boolean showType;
+
+	/**
+	 * Attribut de type Generateur permettant de créer le générateur et de l'utiliser dans la classe
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#affichageId
+	 * @see IHMFormulaire#affichageType
+	 */
 	private Generateur gen;
+
+	/**
+	 * Attribut de type JPanel permettant de créer la fenêtre de saisie
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#resetComponent
+	 * @see IHMFormulaire#actionPerformed
+	 * @see IHMFormulaire#addKeyListener
+	 * @see IHMFormulaire#getPan
+	 */
 	private JPanel pan;
+
+	/**
+	 * Attribut de type ArrayList de Integer permettant la gestion de deux touches en même temps
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#keyPressed
+	 * @see IHMFormulaire#keyReleased
+	 */
 	private ArrayList<Integer> keyEvent;
-	JPanel flowLayout;
 
-	private JButton reset,confirm;
+	/**
+	 * Attribut de type JPanel permettant de créer une fenêtre pour ajouter les boutons reset et confirm
+	 * @see IHMFormulaire#IHMFormulaire
+	 */
+	private JPanel flowLayout;
 
+	/**
+	 * Attribut de type JButton permettant de créer et d'utiliser le bouton pour réinitialiser le formulaire
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#actionPerformed
+	 */
+	private JButton reset;
+
+	/**
+	 * Attribut de type JButton permettant de créer et d'utiliser le bouton pour valider le formulaire
+	 * @see IHMFormulaire#IHMFormulaire
+	 * @see IHMFormulaire#actionPerformed
+	 */
+	private JButton confirm;
+
+	/**
+	 * Constructeur permettant de créer la Frame du formulaire
+	 * @param fichier est le nom du fichier pour extraire le fichier XML
+	 */
 	public IHMFormulaire(String fichier)
 	{
 		termine = false;
 		setLayout(new BorderLayout());
 		setTitle("Formulaire");
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setSize(1000,1000);
 		gen = new Generateur(fichier);
 		pan = gen.createForm();
 		JScrollPane jsp = new JScrollPane(pan);
@@ -57,7 +119,9 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		this.affichageType();
 	}
 
-
+	/**
+	 * 
+	 */
 	public void keyPressed(KeyEvent e)
 	{
 		keyEvent.add(e.getKeyCode());
@@ -69,9 +133,11 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		{
 			this.affichageType();
 		}
-
 	}
 
+	/**
+	 * Méthode permettant de retirer les code KeyEvent de l’ArrayList
+	 */
 	public void keyReleased(KeyEvent e)
 	{
 		for (int i = 0;i < keyEvent.size() ;i++ )
@@ -80,8 +146,15 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 	}
 
-	public void keyTyped(KeyEvent e){}
+	public void keyTyped(KeyEvent e) 
+	{
+		//Non utilisé
+	}
 
+	/**
+	 * Méthode permettant de gérer les clics sur les boutons reset et confirm
+	 * @param e variable ActionEvent contenant la source du clic
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == reset)
@@ -96,6 +169,9 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 	}
 
+	/**
+	 * Méthode permettant l'affichage ou non des id
+	 */
 	private void affichageId()
 	{
 		ArrayList<JLabel> listeId = (ArrayList)this.gen.getListlabelId();
@@ -107,6 +183,9 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		showId = !showId;
 	}
 
+	/**
+	 * Méthode permettant l'affichage ou non des types
+	 */
 	private void affichageType()
 	{
 		ArrayList<JLabel> listeType = (ArrayList)this.gen.getListlabelType();
@@ -118,11 +197,21 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		showType = !showType;
 	}
 
+	/**
+	 * Cette méthode retourne l'attribut pan sous forme de JPanel.
+	 *
+	 * @see IHMFormulaire#pan
+	 */
 	public JPanel getPan()
 	{
 		return this.pan;
 	}
 
+	/** 
+	 * Cette méthode ajoute des KeyListener sur chacuns des composants du JPanel pan
+	 *
+	 * @see IHMFormulaire#pan
+	 */
 	private void addKeyListener(JPanel pan)
 	{
 		Component[] composants = pan.getComponents();
@@ -131,7 +220,13 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 			c.addKeyListener(this);
 		}
 	}
-
+	
+	/**
+	 * Cette méthode prends en paramètre un JPanel et permet de réinitialiser les composants 
+	 * du JPanel passé en paramètres.
+	 * 
+	 * @see IHMFormulaire#pan
+	 */
 	private void resetComponent(JPanel pan)
 	{
 		Component[] composants = pan.getComponents();
@@ -148,7 +243,12 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 			}
 		}
 	}
-
+	
+	/**
+	 * La méthode createForm du Generateur décompose le fichier XML pour remplir la hashmap 
+	 * et prends en paramètre une String qui est le nom du fichier XML.
+	 * 
+	 */
 	public static HashMap<String,Component> createForm(String fichier)
 	{
 		IHMFormulaire ihm = new IHMFormulaire(fichier);

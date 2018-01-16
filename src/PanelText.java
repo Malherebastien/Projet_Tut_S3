@@ -12,13 +12,20 @@ import java.awt.event.KeyListener;
 public class PanelText extends JPanel implements KeyListener
 {
     /**
-     * 
+     * Attribut pour avoir accès au tableau dans lequel le PanelText est inséré
+     * @see PanelText#PanelText
      */
     private Tableau parent;
+    /**
+     * JTextField de saisie
+     * @see PanelText#keyPressed
+     */
     private JTextField text;
 
     /**
      * Constructeur 
+     * @param parent instance père de Tableau, présente uniquement 
+     *        pour avoir accès aux éléments du tableau
      */
     public PanelText(Tableau parent)
     {
@@ -51,9 +58,12 @@ public class PanelText extends JPanel implements KeyListener
     @Override
     public void keyTyped(KeyEvent e)
     {
-
+        //Non utilisé
     }
 
+    /**
+     * Permet de gérer les déplacements dans le tableau à l'aide des touches directionnelles
+     */
     @Override
     public void keyPressed(KeyEvent e)
     {
@@ -63,13 +73,12 @@ public class PanelText extends JPanel implements KeyListener
 
         if(e.getKeyCode() == KeyEvent.VK_ENTER )
             parent.textFieldValue(text.getText());
-
     }
 
     @Override
     public void keyReleased(KeyEvent e)
     {
-
+        //Non utilisé
     }
 
     /**

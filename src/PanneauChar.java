@@ -25,7 +25,7 @@ public class PanneauChar extends Panneau
     }
 
     /**
-     * Permet d'initialiser la case du tableau à l'indice donné avec la valeur souhaité
+     * Permet d'initialiser la case du tableau aux indices donnés avec la valeur souhaitée
      *
      * @param value est la valeur à insérer dans le tableau à l'indice donné
      * @param lig est l'indice pour la ligne pour l'insertion dans le tableau

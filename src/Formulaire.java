@@ -7,15 +7,37 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import java.util.ArrayList;
 
+
+/**
+ * Le formulaire est le programme que l'utilisateur appel pour remplir la HashMap qui regroupe tous les composants 
+ * qui seront inclus dans l'IHM.
+ * 
+ * @author COFNI
+ */
 public class Formulaire
-{
+{	
+	/**
+	 * Cette HashMap regroupe tous les composants qui seront contenu dans l'IHM de l'utilisateur.
+	 */
 	private HashMap<String,Component> mapIdComposant;
 
+	/**
+	 * Le contructeur de la classe Formulaire remplis l'attribut mapIdComposant avec la HashMap passée en paramètre.
+	 * @param mapIdComposant
+	 * 
+	 * @see Formulaire#mapIdComposant
+	 */
 	public Formulaire(HashMap<String,Component> mapIdComposant)
 	{
 		this.mapIdComposant = mapIdComposant;
 	}
-
+	
+	/**
+	 * La fonction getString sert à retourner le composant de l'attribut mapIdComposant dont l'id est passé est passée en paramètre.
+	 * Il retourne le composant sous forme de String.
+	 * @param id
+	 * @return La chaine de la HashMap avec l'id correspondant
+	 */
 	public String getString(int id)
 	{
 		String s = "";
@@ -33,6 +55,14 @@ public class Formulaire
 		return s;
 	}
 
+	/**
+	 * La fonction getInt sert à retourner le composant de l'attribut mapIdComposant dont l'id est passé est passée en paramètre.
+	 * Il retourne le composant sous forme d'int.
+	 * 
+	 * @param id
+	 * @return L'entier de la HashMap avec l'id correspondant
+	 * @see mapIdComposant
+	 */
 	public int getInt(int id)
 	{
 		int i = -1;
@@ -66,6 +96,15 @@ public class Formulaire
 		}
 		return i;
 	}
+	
+	/**
+	 * La fonction getDouble sert à retourner le composant de l'attribut mapIdComposant dont l'id est passé est passée en paramètre.
+	 * Il retourne le composant sous forme de Double.
+	 * 
+	 * @param id
+	 * @return Le Double de la HashMap avec l'id correspondant
+	 * @see mapIdComposant
+	 */
 	public double getDouble(int id)
 	{
 		Double d = -0.1;
@@ -98,6 +137,14 @@ public class Formulaire
 		return d;
 	}
 
+	/**
+	 * La fonction getChar sert à retourner le composant de l'attribut mapIdComposant dont l'id est passé est passée en paramètre.
+	 * Il retourne le composant sous forme de char.
+	 * 
+	 * @param id
+	 * @return Le caractère de la HashMap avec l'id correspondant
+	 * @see mapIdComposant
+	 */
 	public char getChar(int id)
 	{
 		String s = "",key = id+"";
@@ -130,12 +177,15 @@ public class Formulaire
 		}
 		return car;
 	}
-
-
-
-
-
-
+	
+	/**
+	 * La fonction getInt sert à retourner le composant de l'attribut mapIdComposant dont l'id est passé est passée en paramètre.
+	 * Il retourne le composant sous forme de boolean.
+	 * 
+	 * @param id
+	 * @return La valeur booléene de la HashMap avec l'id correspondant
+	 * @see mapIdComposant
+	 */
 	public boolean[] getBoolean(int id)
 	{
 		boolean[] b = null;
@@ -164,29 +214,14 @@ public class Formulaire
 		return b;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	/**
+	 * La fonction getCasesString sert à retourner les valeurs du tableau avec l'id de l'attribut mapIdComposant correspondant à celui passé en paramètre.
+	 * Il retourne le composant sous forme d'un tableau de String
+	 * 
+	 * @param id
+	 * @return Un tableau contenant toutes les chaines entrées dans le tableau de L'IHM dont l'id correspond à celui entré en paramètre.
+	 * @see mapIdComposant
+	 */
 	public String[] getCasesString(int id)
 	{
 		String[] valeurs = null;
@@ -215,7 +250,14 @@ public class Formulaire
 		return retour.toArray(new String[retour.size()]);
 	}
 
-
+	/**
+	 * La fonction getCasesInt sert à retourner les valeurs du tableau avec l'id de l'attribut mapIdComposant correspondant à celui passé en paramètre.
+	 * Il retourne le composant sous forme d'un tableau d'int.
+	 * 
+	 * @param id
+	 * @return Un tableau contenant tout les entiers entrés dans le tableau de L'IHM dont l'id correspond à celui entré en paramètre.
+	 * @see mapIdComposant
+	 */
 	public int[] getCasesInt(int id)
 	{
 		JCheckBox c;
@@ -245,6 +287,15 @@ public class Formulaire
 		for (int i = 0; i < retour.size();i++)tabRetour[i] = retour.get(i);
 		return tabRetour;
 	}
+	
+	/**
+	 * La fonction getCasesDouble sert à retourner les valeurs du tableau avec l'id de l'attribut mapIdComposant correspondant à celui passé en paramètre.
+	 * Il retourne le composant sous forme d'un tableau de Double
+	 * 
+	 * @param id
+	 * @return Un tableau contenant tout les Double entrés dans le tableau de L'IHM dont l'id correspond à celui entré en paramètre.
+	 * @see mapIdComposant
+	 */
 	public double[] getCasesDouble(int id)
 	{
 		JCheckBox c;
@@ -274,6 +325,15 @@ public class Formulaire
 		for (int i = 0; i < retour.size();i++)tabRetour[i] = retour.get(i);
 		return tabRetour;
 	}
+	
+	/**
+	 * La fonction getCasesChar sert à retourner les valeurs du tableau avec l'id de l'attribut mapIdComposant correspondant à celui passé en paramètre.
+	 * Il retourne le composant sous forme d'un tableau de char.
+	 * 
+	 * @param id
+	 * @return Un tableau contenant tout les caractères entrés dans le tableau de L'IHM dont l'id correspond à celui entré en paramètre.
+	 * @see mapIdComposant
+	 */
 	public char[] getCasesChar(int id)
 	{
 		JCheckBox c;
@@ -303,79 +363,4 @@ public class Formulaire
 		for (int i = 0; i < retour.size();i++)tabRetour[i] = retour.get(i);
 		return tabRetour;
 	}
-
-	public String[][] getTabString(int id)
-	{
-		String[][] retour = null;
-		try {
-			Tableau t = (Tableau)mapIdComposant.get(id+"");
-			PanneauString ps = (PanneauString)t.getPanneau();
-			retour = ps.getTab();
-		}
-		catch (Exception e) {}
-		return retour;
-	}
-	public int[][] getTabInt(int id)
-	{
-		int[][] retour = null;
-		try {
-			Tableau t = (Tableau)mapIdComposant.get(id+"");
-			PanneauInt ps = (PanneauInt)t.getPanneau();
-			retour = ps.getTab();
-		}
-		catch (Exception e) { System.out.println(e); }
-		return retour;
-	}
-	public double[][] getTabDouble(int id)
-	{
-		double[][] retour = null;
-		try {
-			Tableau t = (Tableau)mapIdComposant.get(id+"");
-			PanneauDouble ps = (PanneauDouble)t.getPanneau();
-			retour = ps.getTab();
-		}
-		catch (Exception e) { System.out.println(e); }
-		return retour;
-	}
-	public char[][] getTabChar(int id)
-	{
-		char[][] retour = null;
-		try {
-			Tableau t = (Tableau)mapIdComposant.get(id+"");
-			PanneauChar ps = (PanneauChar)t.getPanneau();
-			retour = ps.getTab();
-		}
-		catch (Exception e) { System.out.println(e); }
-		return retour;
-	}
-	public boolean[][] getTabBooleen(int id)
-	{
-		boolean[][] retour = null;
-		try {
-			Tableau t = (Tableau)mapIdComposant.get(id+"");
-			PanneauBooleen ps = (PanneauBooleen)t.getPanneau();
-			retour = ps.getTab();
-		}
-		catch (Exception e) { System.out.println(e); }
-		return retour;
-	}
-
-	public String getDate(int id)
-	{
-		Calendrier c = null;
-		String s = "";
-		try {
-			c = (Calendrier)mapIdComposant.get(id+"");
-			s = c.getDate();
-		}
-		catch (Exception e)
-		{
-			if(c == null)System.out.println("Cet id n'appartient pas à une instance de calendrier.");
-			else
-				System.out.println("Impossible de récupérer une date.");
-		}
-		return s;
-	}
-
-
 }

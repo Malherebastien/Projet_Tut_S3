@@ -9,14 +9,11 @@ import java.awt.*;
  */
 public class Panneau extends JPanel
 {
-<<<<<<< HEAD
     /**
      * Constante permettant de définir le nombre de lignes du tableau
      *
      * @see Panneau#paintComponent()
      */
-=======
->>>>>>> a5d87e69a2b19cf7de7617111be895dd8a6cc512
     private final int NB_LIGNES = 5;
     /**
      * Constante permettant de définir le nombre de colonnes du tableau 
@@ -74,7 +71,7 @@ public class Panneau extends JPanel
     }
 
     /**
-     * Méthode permettant de dessiner les cases du tableau
+     * Méthode permettant de dessiner les cases du tableau et permet l'affichage de la sélection d'une case
      */
     public void paintComponent(Graphics g)
     {
@@ -111,7 +108,9 @@ public class Panneau extends JPanel
     }
 
     /**
-     * !!!!!!!! chez pas frere  !!
+     * Permet de remettre à jour les valeurs de x et y
+     * @param x est la valeur à mettre a jour de x
+     * @param y est la valeur à mettre a jour de x
      */
     public void deplacerSelection(int x, int y)
     {
@@ -123,7 +122,7 @@ public class Panneau extends JPanel
     }
 
     /**
-     * Permet d'initialiser une case du tableau avec les indices et la valeur donné
+     * Permet d'initialiser une case du tableau avec les indices et la valeur donnés
      * @param value est la valeur à saisir aux indices du tableau
      * @param lig est l'indice de la ligne pour insérer la valeur dans le tableau
      * @param col est l'indice de la colonne pour insérer la valeur dans le tableau
@@ -134,9 +133,10 @@ public class Panneau extends JPanel
     }
 
     /**
-     * Permet de retourner la valeur aux indices donné
+     * Permet de retourner la valeur aux indices donnés
      * @param lig est l'indice de la ligne du tableau pour retourner la valeur du tableau
      * @param col est l'indice de la colonne du tableau pour retourner la valeur du tableau
+     * @return la valeur aux indices donnés
      */
     public String getValue(int lig, int col)
     {

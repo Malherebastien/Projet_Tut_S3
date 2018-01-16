@@ -13,15 +13,54 @@ import org.jdom.input.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * La classe Generateur sert a creer lire les elements qui du fichier xml passé en paramètre du constructeur 
+ * afin de pouvoir placer les éléments correspondant dans deux ArrayList différentes. La première pour le label et la deuxième pour le type.
+ *
+ * @author COFNI
+ */
+
 public class Generateur
 {
-
+	/**
+	 * Cet attribut est le document XML que l'on va lire pour remplir les deux ArrayList.
+	 * 
+	 * @see Generateur#listLabelId
+	 * @see Generateur#listLabelType
+	 */
 	private static Document document;
+	
+	/**
+	 * Cet attribut represente la racine du fichier XML.
+	 * @see Generateur#document
+	 */
 	private static Element racine;
 
+	/**
+	 * Cet attribut est la liste de des evenements liés aux différents elements de l'IHM.
+	 * @see Generateur#listLabelId
+	 * @see Generateur#listLabelType
+	 * @see Generateur#document
+	 */
 	private ArrayList<Integer> keyEvent;
+	
+	/**
+	 * Ces deux attributs contiennent les données liées à chaques éléments du document XML.
+	 * 
+	 * @see Generateur#document
+	 */
 	private ArrayList<JLabel> listLabelId,listLabelType;
-
+	
+	/**
+	 * Le constructeur du Generateur prends en paramètre une string qui représente le nom d'un fichier
+	 * puis initialise les attributs.
+	 *
+	 * @see Generateur#listLabelId
+	 * @see Generateur#listLabelType
+	 * @see Generateur#document
+	 * 
+	 *@param fichier
+	 */
 	public Generateur(String fichier)
 	{
 		listLabelId = new ArrayList<JLabel>();
@@ -37,11 +76,20 @@ public class Generateur
 		}
 		racine = document.getRootElement();
 	}
+	
+	/**
+	 * La méthode createForm du Generateur décompose le fichier XML pour remplir les deux ArrayList : listLabelId et listLabelId
+	 *
+	 * @see Generateur#listLabelId
+	 * @see Generateur#listLabelType
+	 * @see Generateur#document
+	 * 
+	 *@param fichier
+	 */
 
 	public JPanel createForm()
 	{
 		JPanel pan = new JPanel(null);
-		pan.setSize(200,200);
 
 		List<Element> listeObjet = racine.getChildren();
 
@@ -73,12 +121,14 @@ public class Generateur
 					composants[composants.length-1].setSize(new Dimension(50,25));
 					listLabelId.add((JLabel)composants[composants.length-1]);
 
+					pan.add(new JLabel(e.getAttributeValue("label")));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX,posY);
+					composants[composants.length-1].setSize(new Dimension(150,25));
 					pan.add(new JTextField());
 					composants = pan.getComponents();
 					composants[composants.length-1].setLocation(posX+80,posY);
-					composants[composants.length-1].setSize(new Dimension(largeur,35));
-					((JTextField)(composants[composants.length-1])).setBorder(BorderFactory.createTitledBorder(e.getAttributeValue("label")));
-
+					composants[composants.length-1].setSize(new Dimension(largeur,25));
 					pan.add(new JLabel(e.getAttributeValue("type")));
 					composants = pan.getComponents();
 					composants[composants.length-1].setLocation(posX+90+largeur,posY);
@@ -96,12 +146,15 @@ public class Generateur
 					composants[composants.length-1].setSize(new Dimension(50,25));
 					listLabelId.add((JLabel)composants[composants.length-1]);
 
+					pan.add(new JLabel(e.getAttributeValue("label")+""));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX,posY);
+					composants[composants.length-1].setSize(new Dimension(150,25));
 					pan.add(new JComboBox());
 					composants = pan.getComponents();
 					JComboBox jcb = (JComboBox)composants[composants.length-1];
 					jcb.setLocation(posX+100,posY);
-					jcb.setSize(largeur,40);
-					jcb.setBorder(BorderFactory.createTitledBorder(e.getAttributeValue("label")+""));
+					jcb.setSize(largeur,25);
 
 					pan.add(new JLabel(e.getAttributeValue("type")));
 					composants = pan.getComponents();
@@ -166,7 +219,7 @@ public class Generateur
 
 					pan.add(new JLabel(e.getAttributeValue("type")));
 					composants = pan.getComponents();
-					composants[composants.length-1].setLocation(posX+largeur,posY);
+					composants[composants.length-1].setLocation(posX+90+largeur,posY);
 					composants[composants.length-1].setSize(new Dimension(150,25));
 					listLabelType.add((JLabel)composants[composants.length-1]);
 
@@ -194,12 +247,16 @@ public class Generateur
 					composants[composants.length-1].setSize(new Dimension(50,25));
 					listLabelId.add((JLabel)composants[composants.length-1]);
 
+					pan.add(new JLabel(e.getAttributeValue("label")+""));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX,posY);
+					composants[composants.length-1].setSize(new Dimension(150,25));
+
 					pan.add(new JSpinner());
 					composants = pan.getComponents();
 					JSpinner jsp = (JSpinner) composants[composants.length-1];
 					jsp.setLocation(posX+50,posY+=20);
-					jsp.setSize(largeur,40);
-					jsp.setBorder(BorderFactory.createTitledBorder(e.getAttributeValue("label")));
+					jsp.setSize(largeur,25);
 
 					pan.add(new JLabel(e.getAttributeValue("type")));
 					composants = pan.getComponents();
@@ -239,46 +296,28 @@ public class Generateur
 					composants[composants.length-1].setSize(longueur,largeur);
 					pan.add(new JLabel(e.getAttributeValue("type")));
 					composants = pan.getComponents();
-					composants[composants.length-1].setLocation(posX+largeur,posY);
-					composants[composants.length-1].setSize(new Dimension(150,25));
-					listLabelType.add((JLabel)composants[composants.length-1]);
-				}
-				break;
-
-				case "Calendrier" :
-				{
-					int id = Integer.parseInt(e.getAttributeValue("id"));
-					int longueur = Integer.parseInt(e.getAttributeValue("longueur"));
-					String typeRetour = e.getAttributeValue("type");
-					posX = Integer.parseInt(e.getAttributeValue("x"));
-					posY = Integer.parseInt(e.getAttributeValue("y"));
-					largeur = Integer.parseInt(e.getAttributeValue("largeur"));
-
-					pan.add(new JLabel(id+""));
-					composants = pan.getComponents();
-					composants[composants.length-1].setLocation(posX-10,posY);
-					composants[composants.length-1].setSize(new Dimension(50,25));
-					listLabelId.add((JLabel)composants[composants.length-1]);
-
-					Calendrier cal = new Calendrier(longueur,largeur);
-					pan.add(cal);
-					composants = pan.getComponents();
-					composants[composants.length-1].setLocation(posX,posY);
-					composants[composants.length-1].setSize(575,largeur);
-					pan.add(new JLabel(e.getAttributeValue("type")));
-					composants = pan.getComponents();
 					composants[composants.length-1].setLocation(posX+90+largeur,posY);
 					composants[composants.length-1].setSize(new Dimension(150,25));
 					listLabelType.add((JLabel)composants[composants.length-1]);
 				}
-				break;
 
 				default: continue;
 			}
 		}
 		return pan;
 	}
-
+	
+	/**
+	 * Cette méthode retourne l'attribut listLabelType.
+	 *
+	 * @see Generateur#listLabelType
+	 */
 	public List<JLabel> getListlabelType(){return this.listLabelType;}
+	
+	/**
+	 * Cette méthode retourne l'attribut listLabelId.
+	 *
+	 * @see Generateur#listLabelId
+	 */
 	public List<JLabel> getListlabelId()  {return this.listLabelId  ;}
 }
