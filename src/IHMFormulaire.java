@@ -93,6 +93,8 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		setLayout(new BorderLayout());
 		setTitle("Formulaire");
 		setSize(1000,1000);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 		gen = new Generateur(fichier);
 		pan = gen.createForm();
 		JScrollPane jsp = new JScrollPane(pan);
@@ -121,7 +123,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public void keyPressed(KeyEvent e)
 	{
@@ -147,7 +149,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		}
 	}
 
-	public void keyTyped(KeyEvent e) 
+	public void keyTyped(KeyEvent e)
 	{
 		//Non utilisé
 	}
@@ -208,7 +210,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		return this.pan;
 	}
 
-	/** 
+	/**
 	 * Cette méthode ajoute des KeyListener sur chacuns des composants du JPanel pan
 	 *
 	 * @see IHMFormulaire#pan
@@ -221,11 +223,11 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 			c.addKeyListener(this);
 		}
 	}
-	
+
 	/**
-	 * Cette méthode prends en paramètre un JPanel et permet de réinitialiser les composants 
+	 * Cette méthode prends en paramètre un JPanel et permet de réinitialiser les composants
 	 * du JPanel passé en paramètres.
-	 * 
+	 *
 	 * @see IHMFormulaire#pan
 	 */
 	private void resetComponent(JPanel pan)
@@ -244,11 +246,11 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 			}
 		}
 	}
-	
+
 	/**
-	 * La méthode createForm du Generateur décompose le fichier XML pour remplir la hashmap 
+	 * La méthode createForm du Generateur décompose le fichier XML pour remplir la hashmap
 	 * et prends en paramètre une String qui est le nom du fichier XML.
-	 * 
+	 *
 	 */
 	public static HashMap<String,Component> createForm(String fichier)
 	{
