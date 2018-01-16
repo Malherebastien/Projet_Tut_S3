@@ -20,7 +20,6 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 	private Generateur gen;
 	private JPanel pan;
 	private ArrayList<Integer> keyEvent;
-	JScrollBar jsbHor,jsbVer;
 	JPanel flowLayout;
 
 	private JButton reset,confirm;
@@ -30,7 +29,7 @@ public class IHMFormulaire extends JFrame implements KeyListener, ActionListener
 		termine = false;
 		setLayout(new BorderLayout());
 		setTitle("Formulaire");
-		setSize(300,300);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		gen = new Generateur(fichier);
 		pan = gen.createForm();
 		JScrollPane jsp = new JScrollPane(pan);

@@ -9,11 +9,14 @@ import java.awt.*;
  */
 public class Panneau extends JPanel
 {
+<<<<<<< HEAD
     /**
      * Constante permettant de définir le nombre de lignes du tableau
      *
      * @see Panneau#paintComponent()
      */
+=======
+>>>>>>> a5d87e69a2b19cf7de7617111be895dd8a6cc512
     private final int NB_LIGNES = 5;
     /**
      * Constante permettant de définir le nombre de colonnes du tableau 

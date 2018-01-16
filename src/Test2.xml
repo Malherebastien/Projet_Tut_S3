@@ -9,15 +9,15 @@
 		<comboBox>vert</comboBox>
 	</JComboBox>
 	<JSpinner label="Spinner"  id="5" x="100" y="500"  largeur="150" type="int"/>
-	<JCheckBox label="Nom de la paire"  id="4" x="100" y="250" largeur="70" type="String">
+	<JCheckBox label="Nom de la paire"  id="4" x="100" y="300" largeur="70" type="String">
 		<checkBox id="4a">2</checkBox>
 		<checkBox id="4b">4</checkBox>
 		<checkBox id="4c">6</checkBox>
 	</JCheckBox>
-	<JRadioButton label="Choix unique"  id="6" x="100" y="350" largeur="150" type="int">
+	<JRadioButton label="Choix unique"  id="6" x="100" y="400" largeur="150" type="int">
 		<radioButton id="6a">1</radioButton>
 	</JRadioButton>
-	<!-- <Tableau label="tableau 2 dim"  col="8" lig="8" type="int"/>
-	<Tableau label="tableau 1 dim"  col="8" type="String"/>
-	<Calendrier x="150" y="50" largeur="200"/> -->
+	<Tableau label="tableau" id="7" col="5" lig="5" type="String" dimension="2" longueur="300" largeur="300" x="500" y ="400"/>
+	<!-- <Tableau label="tableau 1 dim"  col="8" type="String"/> -->
+	<Calendrier id="8" x="400" y="50" longueur="320" largeur="200"/>
 </formulaire>

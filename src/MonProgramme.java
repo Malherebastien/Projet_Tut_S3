@@ -6,12 +6,10 @@ public class MonProgramme
 	public static void main(String[] args)
 	{
 		Formulaire form = new Formulaire(IHMFormulaire.createForm("../../../src/Test2.xml"));
-		int i = form.getInt(1);
-		int j = form.getInt(2);
-		int k = form.getInt(5);
-		boolean[] cases = form.getBoolean(6);
+		String date = form.getDate(8);
 
-		System.out.println(i+" "+j+" "+k);
-		for (boolean a : cases) System.out.println(a);
+		System.out.println(date);
+
+
 	}
 }
