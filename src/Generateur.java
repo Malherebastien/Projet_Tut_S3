@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 /**
- * La classe Generateur sert a creer lire les elements qui du fichier xml passé en paramètre du constructeur 
+ * La classe Generateur sert a creer lire les elements qui du fichier xml passé en paramètre du constructeur
  * afin de pouvoir placer les éléments correspondant dans deux ArrayList différentes. La première pour le label et la deuxième pour le type.
  *
  * @author COFNI
@@ -24,12 +24,12 @@ public class Generateur
 {
 	/**
 	 * Cet attribut est le document XML que l'on va lire pour remplir les deux ArrayList.
-	 * 
+	 *
 	 * @see Generateur#listLabelId
 	 * @see Generateur#listLabelType
 	 */
 	private static Document document;
-	
+
 	/**
 	 * Cet attribut represente la racine du fichier XML.
 	 * @see Generateur#document
@@ -43,14 +43,14 @@ public class Generateur
 	 * @see Generateur#document
 	 */
 	private ArrayList<Integer> keyEvent;
-	
+
 	/**
 	 * Ces deux attributs contiennent les données liées à chaques éléments du document XML.
-	 * 
+	 *
 	 * @see Generateur#document
 	 */
 	private ArrayList<JLabel> listLabelId,listLabelType;
-	
+
 	/**
 	 * Le constructeur du Generateur prends en paramètre une string qui représente le nom d'un fichier
 	 * puis initialise les attributs.
@@ -58,7 +58,7 @@ public class Generateur
 	 * @see Generateur#listLabelId
 	 * @see Generateur#listLabelType
 	 * @see Generateur#document
-	 * 
+	 *
 	 *@param fichier
 	 */
 	public Generateur(String fichier)
@@ -76,14 +76,14 @@ public class Generateur
 		}
 		racine = document.getRootElement();
 	}
-	
+
 	/**
 	 * La méthode createForm du Generateur décompose le fichier XML pour remplir les deux ArrayList : listLabelId et listLabelId
 	 *
 	 * @see Generateur#listLabelId
 	 * @see Generateur#listLabelType
 	 * @see Generateur#document
-	 * 
+	 *
 	 *@param fichier
 	 */
 
@@ -301,20 +301,49 @@ public class Generateur
 					composants[composants.length-1].setSize(new Dimension(150,25));
 					listLabelType.add((JLabel)composants[composants.length-1]);
 				}
+				break;
+
+				case "Calendrier" :
+				{
+					int id = Integer.parseInt(e.getAttributeValue("id"));
+					int longueur = Integer.parseInt(e.getAttributeValue("longueur"));
+					String typeRetour = e.getAttributeValue("type");
+					posX = Integer.parseInt(e.getAttributeValue("x"));
+					posY = Integer.parseInt(e.getAttributeValue("y"));
+					largeur = Integer.parseInt(e.getAttributeValue("largeur"));
+
+					pan.add(new JLabel(id+""));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX-20,posY);
+					composants[composants.length-1].setSize(new Dimension(50,25));
+					listLabelId.add((JLabel)composants[composants.length-1]);
+
+					Calendrier cal = new Calendrier(longueur,largeur);
+					pan.add(cal);
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX,posY);
+					composants[composants.length-1].setSize(575,largeur);
+					pan.add(new JLabel(e.getAttributeValue("type")));
+					composants = pan.getComponents();
+					composants[composants.length-1].setLocation(posX+90+largeur,posY);
+					composants[composants.length-1].setSize(new Dimension(150,25));
+					listLabelType.add((JLabel)composants[composants.length-1]);
+				}
+				break;
 
 				default: continue;
 			}
 		}
 		return pan;
 	}
-	
+
 	/**
 	 * Cette méthode retourne l'attribut listLabelType.
 	 *
 	 * @see Generateur#listLabelType
 	 */
 	public List<JLabel> getListlabelType(){return this.listLabelType;}
-	
+
 	/**
 	 * Cette méthode retourne l'attribut listLabelId.
 	 *
